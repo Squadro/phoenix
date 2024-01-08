@@ -7,6 +7,7 @@ import time
 from data_migrator.model.active_storage_attachments import ActiveStorageAttachments
 from data_migrator.model.commerce_product_variant import CommerceProductVariants
 from django.db.models import OuterRef, Subquery, Q
+from constant import KAFKA_MIGRATION_TOPIC
 
 logger = logging.getLogger(__name__)
 MAX_RETRIES = 3  # Maximum number of retries for processing a variant data
@@ -53,10 +54,8 @@ def process_variant_data(variant_data, message_producer):
                 'status': variant_data['id'],
                 'product_erp_code': variant_data['erp_code']
             }
-            print(formatted_data)
-
             # Produce variant data to the message queue
-            message_producer.produce_message('migration_messages',
+            message_producer.produce_message(KAFKA_MIGRATION_TOPIC,
                                              json.dumps(formatted_data).encode('utf-8'))
 
             success_count += 1

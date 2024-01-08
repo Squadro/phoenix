@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.urls import path
-from data_migrator.views import migrate,check
+from data_migrator.views import migrate, check
 
 
 urlpatterns = [

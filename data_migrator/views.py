@@ -19,13 +19,12 @@ async def migrate(request):
     try:
 
         # Start the asynchronous migration task
-        last_successful_offset = 0
+        last_successful_page = 0
         total_records = 10
         chunk_size = 10
         loop = asyncio.get_event_loop()
-        loop.run_in_executor(None, migrate_variant_data_sync, last_successful_offset, total_records, chunk_size,
+        loop.run_in_executor(None, migrate_variant_data_sync, last_successful_page, total_records, chunk_size,
                              messageProducer)
-        print("{'status': 'Variant data migration started successfully'}, status = 201")
 
         # Respond with 201 status and task ID
         return JsonResponse({'status': 'Variant data migration started successfully'}, status=201)
