@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constant.py" beforeDir="false" afterPath="$PROJECT_DIR$/constant.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_migrator/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_migrator/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_migrator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_consumer/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_producer/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_producer/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,23 +34,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for tests.KafkaProducerTestCase.test_produce_kafka_message.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for tests.MigrateEndpointTest.test_migrate_endpoint.executor&quot;: &quot;Debug&quot;,
-    &quot;Python tests.Python tests for tests.TestMessageConsumerTestCase.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for tests.TestMessageConsumerTestCase.test_consume_message.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for tests.TestMessageConsumerTestCase.test_kafka_consume_message.executor&quot;: &quot;Debug&quot;,
-    &quot;Python tests.Unittests for tests.KafkaProducerTestCase.executor&quot;: &quot;Run&quot;,
-    &quot;Python.manage.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop__branch&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/muppa/GitHub/phoenix/manage.py&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for tests.KafkaProducerTestCase.test_produce_kafka_message.executor": "Run",
+    "Python tests.Python tests for tests.MigrateEndpointTest.test_migrate_endpoint.executor": "Debug",
+    "Python tests.Python tests for tests.TestMessageConsumerTestCase.executor": "Run",
+    "Python tests.Python tests for tests.TestMessageConsumerTestCase.test_consume_message.executor": "Run",
+    "Python tests.Python tests for tests.TestMessageConsumerTestCase.test_kafka_consume_message.executor": "Run",
+    "Python tests.Unittests for tests.KafkaProducerTestCase.executor": "Run",
+    "Python.manage.executor": "Debug",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "develop__branch",
+    "last_opened_file_path": "C:/Users/muppa/GitHub/phoenix/manage.py",
+    "settings.editor.selected.configurable": "terminal"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\muppa\GitHub\phoenix\data_migrator" />
@@ -178,9 +175,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Python tests for tests.KafkaProducerTestCase.test_produce_kafka_message" />
+        <item itemvalue="Python tests.Python tests for tests.TestMessageConsumerTestCase.test_kafka_consume_message" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python tests.Python tests for tests.MigrateEndpointTest.test_migrate_endpoint" />
-        <item itemvalue="Python tests.Python tests for tests.TestMessageConsumerTestCase.test_kafka_consume_message" />
         <item itemvalue="Python tests.Unittests for tests.KafkaProducerTestCase" />
       </list>
     </recent_temporary>
@@ -207,18 +204,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/message_producer/tests.py</url>
-          <line>10</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/message_consumer/tests.py</url>
           <line>30</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/data_migrator/tasks.py</url>
-          <line>23</line>
+          <line>74</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
