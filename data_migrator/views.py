@@ -34,7 +34,6 @@ async def migrate(request):
         return JsonResponse({'error': 'Failed to start variant data migration'}, status=500)
 
 
-def check(request):
-    variant_data = get_variants_data(10, 10)
-    for data in variant_data:
-        print(data)
+# Have to Remove this code
+# def check(request):
+#      test()

@@ -17,7 +17,6 @@ class KafkaProducerTestCase(unittest.TestCase):
 
         # Create an instance of your KafkaProducer class
         kafka_producer = KafkaProducer(KAFKA_BOOTSTRAP_SERVERS)
-        mock_kafka_producer.return_value.
 
         # Add debugging statements
         print(f'Before produce_message: {kafka_producer_instance.produce.mock_calls}')

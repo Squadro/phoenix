@@ -21,6 +21,7 @@ from data_migrator.views import migrate, check
 
 urlpatterns = [
     path('migrate/', migrate, name='migrate'),
+    # Have to Remove this URL
     path('check/', check, name='check'),
 
 ]
