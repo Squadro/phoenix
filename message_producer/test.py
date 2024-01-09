@@ -1,3 +1,4 @@
+# DELETE -->need to delete this file
 from confluent_kafka import Producer
 
 bootstrap_servers = 'localhost:9092'

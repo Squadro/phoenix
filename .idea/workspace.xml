@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_migrator/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_migrator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_producer/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_producer/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_producer/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_producer/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phoenix/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/phoenix/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +46,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "develop__branch",
-    "last_opened_file_path": "C:/Users/muppa/GitHub/phoenix",
+    "last_opened_file_path": "C:/Users/muppa/GitHub/bonito.recommendations",
     "settings.editor.selected.configurable": "terminal"
   }
 }]]></component>

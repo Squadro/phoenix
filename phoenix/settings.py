@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,11 +124,12 @@ DATABASES = {
     },
     'read_replica': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'bonito',
-            'USER': 'bonito',
-            'PASSWORD': "RG]pn2W^'<(7",
-            'HOST': 'bonito-app-rds-read-replica.cnxne33fjape.ap-south-1.rds.amazonaws.com',
-            'PORT': '5432',
+            'NAME': os.environ.get('POSTGRES_DBNAME'),
+            'USER': os.environ.get('POSTGRES_USER'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+            'HOST': os.environ.get('POSTGRES_HOST'),
+            'PORT': os.environ.get('POSTGRES_PORT'),
+
         }
 
 }
