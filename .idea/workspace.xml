@@ -5,8 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/message_producer/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_producer/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/DAO/ImageEmbeddingDao.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/DAO/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/embedding_generator_interface.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constant.py" beforeDir="false" afterPath="$PROJECT_DIR$/constant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_migrator/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/embedding_generator/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/embedding_generator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_consumer/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_consumer/interfaces.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/consumer_interfaces.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_consumer/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_producer/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_producer/producer_interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_producer/kafka_producer.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_producer/kafka_producer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/phoenix/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/phoenix/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phoenix/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/phoenix/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,11 +58,11 @@
     "Python tests.Unittests for tests.KafkaProducerTestCase.executor": "Run",
     "Python.manage.executor": "Debug",
     "Python.test.executor": "Run",
-    "Python.test1.executor": "Run",
+    "Python.test1.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "develop__branch",
-    "last_opened_file_path": "C:/Users/muppa/GitHub/bonito.recommendations",
+    "last_opened_file_path": "C:/Users/muppa/GitHub/phoenix",
     "settings.editor.selected.configurable": "terminal"
   }
 }]]></component>
@@ -56,8 +72,11 @@
       <recent name="C:\Users\muppa\GitHub\phoenix" />
       <recent name="C:\Users\muppa\GitHub\phoenix\message_consumer" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\muppa\GitHub\phoenix\embedding_generator\DAO" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.test1">
+  <component name="RunManager" selected="Python.manage">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="phoenix" />
       <option name="ENV_FILES" value="" />
@@ -229,8 +248,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/message_consumer/apps.py</url>
-          <line>24</line>
+          <line>28</line>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/embedding_generator/task.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/embedding_generator/urls.py</url>
+          <line>5</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/embedding_generator/task.py</url>
+          <line>39</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

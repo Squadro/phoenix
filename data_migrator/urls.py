@@ -16,12 +16,12 @@ Including another URLconf
 """
 
 from django.urls import path
-from data_migrator.views import migrate, check
+from data_migrator.views import migrate
 
 
 urlpatterns = [
     path('migrate/', migrate, name='migrate'),
     # Have to Remove this URL
-    path('check/', check, name='check'),
+    #path('check/', check, name='check'),
 
 ]

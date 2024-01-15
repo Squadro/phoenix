@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'message_consumer',
+    'embedding_generator',
     'message_producer',
     'data_migrator',
     'django.contrib.admin',
@@ -119,7 +120,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': '127.0.1.1',
+        'HOST': 'localhost',
         'PORT': '5432',
     },
     'read_replica': {

@@ -1,7 +1,0 @@
-from abc import ABC, abstractmethod
-
-
-class MessageConsumer(ABC):
-    @abstractmethod
-    def consume_message(self, topic):
-        pass

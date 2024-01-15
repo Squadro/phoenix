@@ -2,7 +2,7 @@ import logging
 from confluent_kafka import Producer
 
 import constant
-from message_producer.interface import MessageProducer
+from message_producer.producer_interface import MessageProducer
 
 logger = logging.getLogger(__name__)
 ssl_ca_location = getattr(constant, 'KAFKA_SSL_CA_LOCATION', None)

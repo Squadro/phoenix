@@ -1,3 +1,8 @@
 Django~=4.1
 pgvector~=0.2.4
 aiokafka~=0.10.0
+python-dotenv~=1.0.0
+requests~=2.31.0
+torch~=2.1.2
+Pillow~=10.1.0
+transformers~=4.36.2

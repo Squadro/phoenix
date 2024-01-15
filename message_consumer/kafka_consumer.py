@@ -3,7 +3,7 @@ import asyncio
 import json
 import logging
 from aiokafka import AIOKafkaConsumer
-from message_consumer.interfaces import MessageConsumer
+from message_consumer.consumer_interfaces import MessageConsumer
 import constant
 
 logger = logging.getLogger(__name__)

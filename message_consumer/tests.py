@@ -4,7 +4,7 @@ from django.test import TestCase
 import unittest
 from unittest.mock import patch
 from message_consumer.kafka_consumer import KafkaConsumer
-from message_consumer.interfaces import MessageConsumer
+from message_consumer.consumer_interfaces import MessageConsumer
 from constant import KAFKA_BOOTSTRAP_SERVERS, KAFKA_GROUP_ID
 
 
