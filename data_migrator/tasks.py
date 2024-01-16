@@ -67,6 +67,7 @@ def get_count():
 
     print(f"Total count for the entire query: {total_count}")
 
+
 # We are processing the variant data we pulled from Read Replica database and sending it to Kafka queue
 def process_variant_data(variant_data, message_producer):
     success_count = 0
@@ -109,7 +110,7 @@ def migrate_variant_data_sync(last_successful_page, chunk_size, message_producer
     try:
         page_number = last_successful_page + 1
         # Remove the second condition for if
-        while True and page_number<2:
+        while True and page_number < 2:
             try:
                 success_count = 0
                 failure_count = 0
@@ -118,15 +119,15 @@ def migrate_variant_data_sync(last_successful_page, chunk_size, message_producer
                 page = paginator.page(page_number)
                 variants_data = get_variants_data(page)
 
-                # for variant_data in variants_data:
-                #     success, failed_offset = process_variant_data(variant_data, message_producer)
-                #     success_count += success
-                #     failure_count += 1 if failed_offset is not None else 0
-                #     if failed_offset is not None:
-                #         failed_offsets.append(failed_offset)
-                #     logger.info(
-                #         f"Variant data migration done for {chunk_size} records. Success count: {success_count}, Failure "
-                #         f"count: {failure_count}, 'failed_offsets': {failed_offsets}")
+                for variant_data in variants_data:
+                    success, failed_offset = process_variant_data(variant_data, message_producer)
+                    success_count += success
+                    failure_count += 1 if failed_offset is not None else 0
+                    if failed_offset is not None:
+                        failed_offsets.append(failed_offset)
+                    logger.info(
+                        f"Variant data migration done for {chunk_size} records. Success count: {success_count}, Failure "
+                        f"count: {failure_count}, 'failed_offsets': {failed_offsets}")
 
                 page_number += 1;
             except EmptyPage:

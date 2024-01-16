@@ -22,12 +22,12 @@ class MessageConsumerConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'message_consumer'
 
-    def ready(self):
-        # Start the Kafka consumer in a separate thread
-        kafka_consumer_thread = threading.Thread(target=start_kafka_consumer)
-        kafka_consumer_thread.start()
-
-    # Stop the Kafka consumer when Django is shutting down
-    @receiver(post_migrate)
-    def on_shutdown(sender, **kwargs):
-        kafka_consumer.stop()
+    # def ready(self):
+    #     # Start the Kafka consumer in a separate thread
+    #     kafka_consumer_thread = threading.Thread(target=start_kafka_consumer)
+    #     kafka_consumer_thread.start()
+    #
+    # # Stop the Kafka consumer when Django is shutting down
+    # @receiver(post_migrate)
+    # def on_shutdown(sender, **kwargs):
+    #     kafka_consumer.stop()

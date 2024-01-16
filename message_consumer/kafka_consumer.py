@@ -1,61 +1,65 @@
 # kafka_consumer.py
-import asyncio
-import json
+
 import logging
-from aiokafka import AIOKafkaConsumer
+import threading
+
+from confluent_kafka import Consumer, KafkaException
 from message_consumer.consumer_interfaces import MessageConsumer
-import constant
 
 logger = logging.getLogger(__name__)
 
 
-class KafkaConsumer(MessageConsumer):
-    def __init__(self, bootstrap_servers, group_id, auto_offset_reset='earliest'):
+class KafkaConsumer(threading.Thread, MessageConsumer):
+    def __init__(self, bootstrap_servers, group_id, topics):
+        super(KafkaConsumer, self).__init__()
         self.bootstrap_servers = bootstrap_servers
         self.group_id = group_id
-        self.auto_offset_reset = auto_offset_reset
+        self.topics = topics
+        self.consumer = None
+        self.running = True
 
-    async def consume_message(self, topic):
-        if not constant.KAFKA_CONSUMER_ENABLED:
-            logger.info('Kafka consumer is disabled based on the setting.')
-            return
+    def process_message(self, payload):
+        # Implement the message processing logic here
+        logger.info(f"Default callback received message: {payload}")
+
+    def run(self):
         consumer_config = {
-            'bootstrap_servers': self.bootstrap_servers,
-            'group_id': self.group_id,
-            'auto_offset_reset': self.auto_offset_reset,
+            'bootstrap.servers': self.bootstrap_servers,
+            'group.id': self.group_id,
+            'auto.offset.reset': 'earliest',
+            'enable.auto.commit': False  # Disable automatic commit to manage offsets manually
         }
 
-        consumer = AIOKafkaConsumer(topic, loop=asyncio.get_event_loop(), **consumer_config)
-        await consumer.start()
+        self.consumer = Consumer(consumer_config)
+        # byte_topics = [topic.encode('utf-8') for topic in self.topics]
+        topic = 'migration_messages'  # Replace with your Kafka topic
+        self.consumer.subscribe([topic])
 
         try:
-            async for msg in consumer:
-                try:
+            while self.running:
+                msg = self.consumer.poll(1.0)
 
-                    data = json.loads(msg.value.decode('utf-8'))
-                    await self.process_kafka_message(data)  # Await the task
-                    logger.info(f'Task enqueued for Kafka message: {data}')
-                except Exception as processing_error:
-                    logger.error(f'Error processing message: {processing_error}', exc_info=True)
+                if msg is None:
+                    continue
+                if msg.error():
+                    if msg.error().code() == KafkaException._PARTITION_EOF:
+                        # End of partition event
+                        continue
+                    else:
+                        logger.error(msg.error())
+                        break
+
+                # Process the Kafka message using the provided callback
+                self.process_message(msg.value().decode('utf-8'))
+
+                # Manually commit the offset after processing the message
+                self.consumer.commit(msg)
 
         except KeyboardInterrupt:
             pass
-        except Exception as consumer_error:
-            logger.error(f'Error in Kafka consumer: {consumer_error}', exc_info=True)
         finally:
-            await consumer.stop()
+            if self.consumer:
+                self.consumer.close()
 
-    async def process_kafka_message(self, data):
-        try:
-            # Implement your message processing logic here
-            print(f'Consumer Data:{data}')
-            logger.info(f'Processing Kafka message: {data}')
-            # Simulate success for demonstration purposes
-            success = True
-
-            # Mark the message as processed in the database
-
-            return success
-        except Exception as processing_error:
-            logger.error(f'Error processing message: {processing_error}', exc_info=True)
-            return False
+    def stop(self):
+        self.running = False

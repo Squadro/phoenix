@@ -68,7 +68,7 @@ def create_embedding(image_content):
 
     # Encode the image using the CLIP processor
     image_input = processor(
-        textx=None,
+        text=None,
         images=image_content,
         return_tensors="pt"
     )["pixel_values"].to(device)
