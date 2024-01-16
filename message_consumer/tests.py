@@ -35,10 +35,10 @@ class TestMessageConsumerTestCase(unittest.TestCase):
         test_message = 'your_test_message'
 
         # Create an instance of your KafkaConsumer class
-        kafka_consumer = KafkaConsumer(KAFKA_BOOTSTRAP_SERVERS, KAFKA_GROUP_ID)
+        kafka_consumer = KafkaConsumer(KAFKA_BOOTSTRAP_SERVERS, KAFKA_GROUP_ID,[test_topic])
 
         # Call the consume_message method with the test data
-        kafka_consumer.consume_message(test_topic)
+        kafka_consumer.process_message(test_topic)
 
         # Assert that the consume method of the Kafka consumer is called with the correct arguments
         kafka_consumer_instance.subscribe.assert_called_once_with([test_topic])

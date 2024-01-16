@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="" />
+    <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constant.py" beforeDir="false" afterPath="$PROJECT_DIR$/constant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/embedding_generator/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_consumer/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/tests.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,24 +35,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for tests.KafkaProducerTestCase.test_produce_kafka_message.executor&quot;: &quot;Debug&quot;,
-    &quot;Python tests.Python tests for tests.MigrateEndpointTest.test_migrate_endpoint.executor&quot;: &quot;Debug&quot;,
-    &quot;Python tests.Python tests for tests.TestMessageConsumerTestCase.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for tests.TestMessageConsumerTestCase.test_consume_message.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for tests.TestMessageConsumerTestCase.test_kafka_consume_message.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Unittests for tests.KafkaProducerTestCase.executor&quot;: &quot;Run&quot;,
-    &quot;Python.manage.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test1.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop__branch&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/muppa/GitHub/phoenix&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for tests.KafkaProducerTestCase.test_produce_kafka_message.executor": "Debug",
+    "Python tests.Python tests for tests.MigrateEndpointTest.test_migrate_endpoint.executor": "Debug",
+    "Python tests.Python tests for tests.TestMessageConsumerTestCase.executor": "Run",
+    "Python tests.Python tests for tests.TestMessageConsumerTestCase.test_consume_message.executor": "Run",
+    "Python tests.Python tests for tests.TestMessageConsumerTestCase.test_kafka_consume_message.executor": "Run",
+    "Python tests.Unittests for tests.KafkaProducerTestCase.executor": "Run",
+    "Python.manage.executor": "Debug",
+    "Python.test.executor": "Run",
+    "Python.test1.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "develop__branch",
+    "last_opened_file_path": "C:/Users/muppa/GitHub/productRecommendationService",
+    "settings.editor.selected.configurable": "terminal"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\muppa\GitHub\phoenix\data_migrator" />
@@ -57,7 +63,7 @@
       <recent name="C:\Users\muppa\GitHub\phoenix\embedding_generator\DAO" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.manage">
+  <component name="RunManager" selected="Python tests.Python tests for tests.TestMessageConsumerTestCase.test_kafka_consume_message">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="phoenix" />
       <option name="ENV_FILES" value="" />
@@ -180,9 +186,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for tests.TestMessageConsumerTestCase.test_kafka_consume_message" />
         <item itemvalue="Python tests.Python tests for tests.KafkaProducerTestCase.test_produce_kafka_message" />
         <item itemvalue="Python.test1" />
-        <item itemvalue="Python tests.Python tests for tests.TestMessageConsumerTestCase.test_kafka_consume_message" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python tests.Python tests for tests.MigrateEndpointTest.test_migrate_endpoint" />
       </list>

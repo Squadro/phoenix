@@ -31,7 +31,7 @@ class KafkaConsumer(threading.Thread, MessageConsumer):
         }
 
         self.consumer = Consumer(consumer_config)
-        # byte_topics = [topic.encode('utf-8') for topic in self.topics]
+        byte_topics = [topic.encode('utf-8') for topic in self.topics]
         topic = 'migration_messages'  # Replace with your Kafka topic
         self.consumer.subscribe([topic])
 
