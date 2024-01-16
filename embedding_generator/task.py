@@ -1,16 +1,10 @@
-import os
-import tempfile
 from io import BytesIO
-from PIL import Image
 from django.db import transaction
 from PIL import Image
-import clip
 from transformers import CLIPModel, CLIPProcessor, CLIPTokenizer
 from constant import CLOUDFRONT_URL
 from embedding_generator.models import ImageEmbedding
 import torch
-from django.http import JsonResponse
-from django.core.files.temp import NamedTemporaryFile
 import requests
 
 

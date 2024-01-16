@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constant.py" beforeDir="false" afterPath="$PROJECT_DIR$/constant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_migrator/model/active_storage_attachments.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/model/active_storage_attachments.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_migrator/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/embedding_generator/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_consumer/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_consumer/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_consumer/consumer_interfaces.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/consumer_interfaces.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phoenix/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/phoenix/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommendation_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/callbacks.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +223,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/data_migrator/tasks.py</url>
-          <line>75</line>
+          <line>47</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -260,23 +253,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/data_migrator/tasks.py</url>
-          <line>119</line>
+          <line>91</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/message_producer/kafka_producer.py</url>
           <line>25</line>
           <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/data_migrator/tasks.py</url>
-          <line>108</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/data_migrator/tasks.py</url>
-          <line>65</line>
-          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

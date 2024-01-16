@@ -16,56 +16,28 @@ BASE_DELAY = 1  # Base delay in seconds for exponential backoff
 
 
 def get_variants_data(page):
-    return CommerceProductVariants.objects.annotate(
-        blob_id=Subquery(
-            ActiveStorageAttachments.objects.filter(
-                record_type='Commerce::ProductVariant',
-                blob__id=OuterRef('id'),
-                name='images'
-            ).order_by('created_at').values('blob_id')[:1]
-        ),
-        s3_key=Subquery(
-            ActiveStorageAttachments.objects.filter(
-                record_type='Commerce::ProductVariant',
-                blob__id=OuterRef('id'),
-                name='images'
-            ).order_by('created_at').values('blob__key')[:1]
-        )
-    ).filter(
-        Q(is_default=True) | Q(blob_id__isnull=False)
-    ).values(
-        'id', 'product_id', 'erp_code', 'status', 'blob_id', 's3_key'
-    ).order_by('id')[page.start_index() - 1:page.end_index()]
+    return (
+            ActiveStorageAttachments.objects
+            .select_related('blob', 'record_id')
+            .filter(record_type='Commerce::ProductVariant', name='images')
+            .order_by('created_at')
+            .values('id', 'blob_id', 'blob__key', 'record_id__id', 'record_id__erp_code', 'record_id__status',
+                    'record_id__product_id')
+        )[page.start_index() - 1:page.end_index()]
 
 
 def get_count():
-    queryset = CommerceProductVariants.objects.annotate(
-        blob_id=Subquery(
-            ActiveStorageAttachments.objects.filter(
-                record_type='Commerce::ProductVariant',
-                blob__id=OuterRef('id'),
-                name='images'
-            ).order_by('created_at').values('blob_id')[:1]
-        ),
-        s3_key=Subquery(
-            ActiveStorageAttachments.objects.filter(
-                record_type='Commerce::ProductVariant',
-                blob__id=OuterRef('id'),
-                name='images'
-            ).order_by('created_at').values('blob__key')[:1]
+    queryset = (
+            ActiveStorageAttachments.objects
+            .select_related('blob', 'record_id')
+            .filter(record_type='Commerce::ProductVariant', name='images')
+            .order_by('created_at')
+            .values('id', 'blob_id', 'blob__key', 'record_id__id', 'record_id__erp_code', 'record_id__status',
+                    'record_id__product_id')
         )
-    ).filter(
-        Q(is_default=True) | Q(blob_id__isnull=False)
-    ).values(
-        'id', 'product_id', 'erp_code', 'status', 'blob_id', 's3_key'
-    ).filter(
-        Q(is_default=True) | Q(blob_id__isnull=False)
-    )
 
     # Get the count for the entire query
-    total_count = queryset.count()
-
-    print(f"Total count for the entire query: {total_count}")
+    return queryset
 
 
 # We are processing the variant data we pulled from Read Replica database and sending it to Kafka queue
@@ -76,12 +48,12 @@ def process_variant_data(variant_data, message_producer):
     while retries < MAX_RETRIES:
         try:
             formatted_data = {
-                'product_variant_id': variant_data['id'],
-                'product_id': variant_data['product_id'],
+                'product_variant_id': variant_data['record_id__id'],
+                'product_id': variant_data['record_id__product_id'],
                 'image_id': variant_data['blob_id'],
-                's3_key': variant_data['s3_key'],
-                'status': variant_data['id'],
-                'product_erp_code': variant_data['erp_code']
+                's3_key': variant_data['blob__key'],
+                'status': variant_data['record_id__status'],
+                'product_erp_code': variant_data['record_id__erp_code']
             }
             # Produce variant data to the message queue
             message_producer.produce_message(KAFKA_MIGRATION_TOPIC,
@@ -106,16 +78,16 @@ def process_variant_data(variant_data, message_producer):
 
 
 def migrate_variant_data_sync(last_successful_page, chunk_size, message_producer):
-    get_count()
+
     try:
         page_number = last_successful_page + 1
         # Remove the second condition for if
-        while True and page_number < 2:
+        while True and page_number < 3:
             try:
                 success_count = 0
                 failure_count = 0
                 failed_offsets = []
-                paginator = Paginator(CommerceProductVariants.objects.all(), chunk_size)
+                paginator = Paginator(get_count(), chunk_size)
                 page = paginator.page(page_number)
                 variants_data = get_variants_data(page)
 
