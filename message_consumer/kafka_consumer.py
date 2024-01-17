@@ -31,8 +31,7 @@ class KafkaConsumer(threading.Thread, MessageConsumer):
         }
 
         self.consumer = Consumer(consumer_config)
-        byte_topics = [topic.encode('utf-8') for topic in self.topics]
-        topic = 'migration_messages'  # Replace with your Kafka topic
+        topic = 'migration_messages'
         self.consumer.subscribe([topic])
 
         try:
@@ -55,11 +54,14 @@ class KafkaConsumer(threading.Thread, MessageConsumer):
                 # Manually commit the offset after processing the message
                 self.consumer.commit(msg)
 
-        except KeyboardInterrupt:
-            pass
+
+        except Exception as e:
+
+            logger.exception(f"An error occurred: {e}")
+
         finally:
-            if self.consumer:
-                self.consumer.close()
+            # Close down consumer to commit final offsets.
+            self.consumer.close()
 
     def stop(self):
         self.running = False
