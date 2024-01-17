@@ -5,14 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/embedding_generator/database/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/database/repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/model/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/model/image_embedding.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/model/product_image_relation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/model/product_variant_information.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/processor/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/processor/image_processor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/embedding_generator/service/image_processing_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/embedding_generator/DAO/ImageEmbeddingDao.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/embedding_generator/DAO/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/management/commands/consume_message.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/embedding_generator/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/embedding_generator/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_consumer/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/message_consumer/callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/callbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_consumer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,15 +58,17 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "develop__branch",
-    "last_opened_file_path": "C:/Users/muppa/GitHub/productRecommendationService",
+    "last_opened_file_path": "C:/Users/muppa/GitHub/phoenix/embedding_generator/processor",
     "settings.editor.selected.configurable": "terminal"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\muppa\GitHub\phoenix\embedding_generator\processor" />
+      <recent name="C:\Users\muppa\GitHub\phoenix\embedding_generator\model" />
+      <recent name="C:\Users\muppa\GitHub\phoenix\embedding_generator\database" />
       <recent name="C:\Users\muppa\GitHub\phoenix\data_migrator" />
       <recent name="C:\Users\muppa\GitHub\phoenix" />
-      <recent name="C:\Users\muppa\GitHub\phoenix\message_consumer" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\muppa\GitHub\phoenix\embedding_generator\DAO" />
@@ -233,22 +241,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/embedding_generator/task.py</url>
-          <line>42</line>
+          <line>43</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/embedding_generator/task.py</url>
-          <line>49</line>
+          <line>50</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/embedding_generator/task.py</url>
-          <line>28</line>
+          <line>29</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/message_consumer/callbacks.py</url>
-          <line>113</line>
+          <line>13</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
