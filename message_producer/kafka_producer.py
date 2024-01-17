@@ -7,18 +7,11 @@ from message_producer.producer_interface import MessageProducer
 logger = logging.getLogger(__name__)
 
 
-def delivery_callback(err, msg):
-    if err is not None:
-        logger.error('Message delivery failed: {}'.format(err))
-    else:
-        logger.info('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
-
-
 class KafkaProducer(MessageProducer):
     def __init__(self, bootstrap_servers):
         self.bootstrap_servers = bootstrap_servers
 
-    def getConfig(self):
+    def get_config(self):
         security_protocol = 'PLAINTEXT'
         ssl_ca_location = getattr(constant, 'KAFKA_SSL_CA_LOCATION', None)
         ssl_certificate_location = getattr(constant, 'KAFKA_SSL_CERTIFICATE_LOCATION', None)
@@ -38,12 +31,12 @@ class KafkaProducer(MessageProducer):
         return producer_config
 
     def produce_message(self, topic, message):
-        producer_config = self.getConfig()
+        producer_config = self.get_config()
         producer = Producer(producer_config)
 
         try:
             # Produce message to the specified topic
-            producer.produce(topic, value=message, callback=delivery_callback)
+            producer.produce(topic, value=message, callback=self.delivery_callback)
 
             # Wait for any outstanding messages to be delivered and delivery reports received
             producer.flush()
@@ -54,3 +47,9 @@ class KafkaProducer(MessageProducer):
         finally:
             # Close the producer to release resources
             producer.flush()
+
+    def delivery_callback(self, err, msg):
+        if err is not None:
+            logger.error('Message delivery failed: {}'.format(err))
+        else:
+            logger.info('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
