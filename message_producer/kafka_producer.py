@@ -5,10 +5,6 @@ import constant
 from message_producer.producer_interface import MessageProducer
 
 logger = logging.getLogger(__name__)
-ssl_ca_location = getattr(constant, 'KAFKA_SSL_CA_LOCATION', None)
-ssl_certificate_location = getattr(constant, 'KAFKA_SSL_CERTIFICATE_LOCATION', None)
-ssl_key_location = getattr(constant, 'KAFKA_SSL_KEY_LOCATION', None)
-ssl_password = getattr(constant, 'KAFKA_SSL_PASSWORD', None)
 
 
 def delivery_callback(err, msg):
@@ -22,13 +18,16 @@ class KafkaProducer(MessageProducer):
     def __init__(self, bootstrap_servers):
         self.bootstrap_servers = bootstrap_servers
 
-    def produce_message(self, topic, message):
+    def getConfig(self, topic, message):
         security_protocol = 'PLAINTEXT'
+        ssl_ca_location = getattr(constant, 'KAFKA_SSL_CA_LOCATION', None)
+        ssl_certificate_location = getattr(constant, 'KAFKA_SSL_CERTIFICATE_LOCATION', None)
+        ssl_key_location = getattr(constant, 'KAFKA_SSL_KEY_LOCATION', None)
+        ssl_password = getattr(constant, 'KAFKA_SSL_PASSWORD', None)
         producer_config = {
             'bootstrap.servers': self.bootstrap_servers,
             'security.protocol': security_protocol,
         }
-
         if security_protocol == 'SSL':
             producer_config.update({
                 'ssl.ca.location': ssl_ca_location,
@@ -36,7 +35,10 @@ class KafkaProducer(MessageProducer):
                 'ssl.key.location': ssl_key_location,
                 'ssl.key.password': ssl_password,
             })
+        return producer_config
 
+    def produce_message(self, topic, message):
+        producer_config = self.getConfig(topic, message)
         producer = Producer(producer_config)
 
         try:
