@@ -34,7 +34,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'message_consumer',
-    'embedding_generator',
     'message_producer',
     'data_migrator',
     'django.contrib.admin',

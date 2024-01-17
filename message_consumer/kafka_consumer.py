@@ -1,5 +1,5 @@
 # kafka_consumer.py
-
+import json
 import logging
 import threading
 
@@ -48,9 +48,9 @@ class KafkaConsumer(threading.Thread, MessageConsumer):
                     else:
                         logger.error(msg.error())
                         break
-
+                json_data = json.loads(msg.value().decode('utf-8'))
                 # Process the Kafka message using the provided callback
-                self.process_message(msg.value().decode('utf-8'))
+                self.process_message(json_data)
 
                 # Manually commit the offset after processing the message
                 self.consumer.commit(msg)

@@ -26,7 +26,7 @@ def get_variants_data(page):
         )[page.start_index() - 1:page.end_index()]
 
 
-def get_count():
+def get_variant_data_querySet():
     queryset = (
             ActiveStorageAttachments.objects
             .select_related('blob', 'record_id')
@@ -82,12 +82,13 @@ def migrate_variant_data_sync(last_successful_page, chunk_size, message_producer
     try:
         page_number = last_successful_page + 1
         # Remove the second condition for if
-        while True and page_number < 3:
+        while True and page_number < 2:
             try:
                 success_count = 0
                 failure_count = 0
                 failed_offsets = []
-                paginator = Paginator(get_count(), chunk_size)
+                queryset = get_variant_data_querySet()
+                paginator = Paginator(queryset, 1)
                 page = paginator.page(page_number)
                 variants_data = get_variants_data(page)
 

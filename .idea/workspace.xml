@@ -6,10 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constant.py" beforeDir="false" afterPath="$PROJECT_DIR$/constant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_migrator/model/image_embedding.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_migrator/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/tasks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/embedding_generator/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/embedding_generator/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/embedding_generator/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/embedding_generator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_consumer/callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/callbacks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_consumer/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_consumer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phoenix/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/phoenix/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phoenix/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/phoenix/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +70,7 @@
       <recent name="C:\Users\muppa\GitHub\phoenix\embedding_generator\DAO" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for tests.TestMessageConsumerTestCase.test_kafka_consume_message">
+  <component name="RunManager" selected="Python.manage">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="phoenix" />
       <option name="ENV_FILES" value="" />
@@ -224,44 +231,29 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/data_migrator/tasks.py</url>
-          <line>47</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/message_producer/kafka_producer.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/message_consumer/apps.py</url>
           <line>28</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/embedding_generator/task.py</url>
-          <line>26</line>
+          <line>27</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/embedding_generator/task.py</url>
-          <line>33</line>
+          <line>34</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/embedding_generator/task.py</url>
-          <line>12</line>
+          <line>13</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/data_migrator/tasks.py</url>
-          <line>91</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/message_producer/kafka_producer.py</url>
-          <line>25</line>
-          <option name="timeStamp" value="23" />
+          <url>file://$PROJECT_DIR$/message_consumer/callbacks.py</url>
+          <line>111</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
