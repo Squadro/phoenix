@@ -5,17 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_migrator/database/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_migrator/database/repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_migrator/model/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_migrator/model/last_successful_page.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_migrator/routers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_migrator/service/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_migrator/util/util.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/embedding_generator/database/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/database/repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/embedding_generator/model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/model/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/embedding_generator/model/image_embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/model/image_embedding.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/embedding_generator/model/product_image_relation.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/model/product_image_relation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/embedding_generator/model/product_variant_information.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/model/product_variant_information.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/embedding_generator/processor/image_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/processor/image_embedding_processor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/embedding_generator/service/image_processing_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/embedding_generator/service/image_processing_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_consumer/kafka_consumer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constant.py" beforeDir="false" afterPath="$PROJECT_DIR$/constant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_migrator/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/service/service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_migrator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,19 +61,20 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "develop__branch",
-    "last_opened_file_path": "C:/Users/muppa/GitHub/phoenix/embedding_generator/processor",
+    "last_opened_file_path": "C:/Users/muppa/GitHub/phoenix/data_migrator/routers",
     "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\muppa\GitHub\phoenix\data_migrator\routers" />
+      <recent name="C:\Users\muppa\GitHub\phoenix\data_migrator\model" />
+      <recent name="C:\Users\muppa\GitHub\phoenix\data_migrator\database" />
       <recent name="C:\Users\muppa\GitHub\phoenix\embedding_generator\processor" />
       <recent name="C:\Users\muppa\GitHub\phoenix\embedding_generator\model" />
-      <recent name="C:\Users\muppa\GitHub\phoenix\embedding_generator\database" />
-      <recent name="C:\Users\muppa\GitHub\phoenix\data_migrator" />
-      <recent name="C:\Users\muppa\GitHub\phoenix" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\muppa\GitHub\phoenix\data_migrator\service" />
       <recent name="C:\Users\muppa\GitHub\phoenix\embedding_generator\DAO" />
     </key>
   </component>
@@ -266,6 +267,16 @@
           <url>file://$PROJECT_DIR$/message_producer/kafka_producer.py</url>
           <line>32</line>
           <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data_migrator/service/service.py</url>
+          <line>87</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data_migrator/database/repository.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
