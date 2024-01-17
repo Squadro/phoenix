@@ -1,4 +1,4 @@
-# image_processor.py
+# image_embedding_processor.py
 from io import BytesIO
 from PIL import Image
 from transformers import CLIPModel, CLIPProcessor, CLIPTokenizer

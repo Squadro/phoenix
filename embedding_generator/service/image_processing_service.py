@@ -3,7 +3,7 @@
 import requests
 
 from constant import CLOUDFRONT_URL
-from embedding_generator.processor.image_processor import ImageProcessor
+from embedding_generator.processor.image_embedding_processor import ImageProcessor
 from embedding_generator.database.repository import DatabaseHandler
 import logging
 

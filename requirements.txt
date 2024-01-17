@@ -6,3 +6,4 @@ requests~=2.31.0
 torch~=2.1.2
 Pillow~=10.1.0
 transformers~=4.36.2
+django-viewflow~=2.0.0b8

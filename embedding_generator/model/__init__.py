@@ -1,0 +1,1 @@
+from .product_image_relation import ProductImageRelation

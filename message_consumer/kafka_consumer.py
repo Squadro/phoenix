@@ -54,9 +54,7 @@ class KafkaConsumer(threading.Thread, MessageConsumer):
                 # Manually commit the offset after processing the message
                 self.consumer.commit(msg)
 
-
         except Exception as e:
-
             logger.exception(f"An error occurred: {e}")
 
         finally:
