@@ -18,7 +18,7 @@ class KafkaProducer(MessageProducer):
     def __init__(self, bootstrap_servers):
         self.bootstrap_servers = bootstrap_servers
 
-    def getConfig(self, topic, message):
+    def getConfig(self):
         security_protocol = 'PLAINTEXT'
         ssl_ca_location = getattr(constant, 'KAFKA_SSL_CA_LOCATION', None)
         ssl_certificate_location = getattr(constant, 'KAFKA_SSL_CERTIFICATE_LOCATION', None)
@@ -38,7 +38,7 @@ class KafkaProducer(MessageProducer):
         return producer_config
 
     def produce_message(self, topic, message):
-        producer_config = self.getConfig(topic, message)
+        producer_config = self.getConfig()
         producer = Producer(producer_config)
 
         try:

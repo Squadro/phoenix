@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_producer/kafka_producer.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_producer/kafka_producer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_producer/producer_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_producer/producer_interface.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,6 +244,11 @@
           <url>file://$PROJECT_DIR$/message_consumer/callbacks.py</url>
           <line>111</line>
           <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/message_producer/kafka_producer.py</url>
+          <line>39</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
