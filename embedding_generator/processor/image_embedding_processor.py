@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class ImageProcessor:
+class EmbeddingProcessor:
     def __init__(self):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model_id = "openai/clip-vit-base-patch32"

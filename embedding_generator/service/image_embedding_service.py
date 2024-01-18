@@ -1,18 +1,19 @@
-# image_processing_service.py
+# image_embedding_service.py
+
+import logging
 
 import requests
 
 from constant import CLOUDFRONT_URL
-from embedding_generator.processor.image_embedding_processor import ImageProcessor
 from embedding_generator.database.repository import DatabaseHandler
-import logging
+from embedding_generator.processor.image_embedding_processor import EmbeddingProcessor
 
 logger = logging.getLogger(__name__)
 
 
-class ImageProcessingService:
+class ImageEmbeddingService:
     def __init__(self):
-        self.image_processor = ImageProcessor()
+        self.image_processor = EmbeddingProcessor()
         self.database_handler = DatabaseHandler()
 
     def process_images(self, message):
