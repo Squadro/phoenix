@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data_migrator/database/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_migrator/database/repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_migrator/model/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_migrator/model/last_successful_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_migrator/routers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_migrator/service/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_migrator/util/util.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constant.py" beforeDir="false" afterPath="$PROJECT_DIR$/constant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_migrator/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/service/service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_migrator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,7 +1,7 @@
 # database_handler.py
 import logging
 
-from django.db import transaction
+from django.db import IntegrityError, transaction
 
 from embedding_generator.model.image_embedding import ImageEmbedding
 from embedding_generator.model.product_image_relation import ProductImageRelation
@@ -12,7 +12,16 @@ from embedding_generator.model.product_variant_information import (
 logger = logging.getLogger(__name__)
 
 
-class DatabaseHandler:
+class SingletonMeta(type):
+    _instances = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super(SingletonMeta, cls).__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+
+class DatabaseHandler(metaclass=SingletonMeta):
     @staticmethod
     def save_embedding(data, embedding):
         try:
@@ -37,6 +46,14 @@ class DatabaseHandler:
                     product=variant_obj, image=embedding_obj
                 )
 
+        except IntegrityError as e:
+            # Handle duplicate key violation (IntegrityError) by logging a message
+
+            logger.warning(f"Duplicate key violation: {e}")
+
+            pass  # You can choose to ignore or handle it differently
+
         except Exception as e:
             logger.error(f"Error saving embedding to database: {e}")
+
             raise
