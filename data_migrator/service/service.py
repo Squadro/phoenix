@@ -8,7 +8,6 @@ import time
 from django.core.paginator import EmptyPage
 
 from constant import KAFKA_MIGRATION_TOPIC, MAX_RETRIES, BASE_DELAY
-from data_migrator.database.repository import VariantRepository
 
 logger = logging.getLogger(__name__)
 
@@ -19,15 +18,15 @@ class MigrationService:
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
             cls._instance = super(MigrationService, cls).__new__(cls)
-            cls._instance.variant_repository = VariantRepository()
         return cls._instance
 
-    def __init__(self):
+    def __init__(self, message_producer=None, variant_repository=None):
         if not hasattr(self, "initialized"):
             self.initialized = True
+            self.message_producer = message_producer
+            self.variant_repository = variant_repository
 
-    @staticmethod
-    def process_variant_data(variant_data, message_producer):
+    def process_variant_data(self, variant_data):
         success_count = 0
         failed_offset = None
         retries = 0
@@ -42,7 +41,7 @@ class MigrationService:
                     "product_erp_code": variant_data["record_id__erp_code"],
                 }
                 # Produce variant data to the message queue
-                message_producer.produce_message(
+                self.message_producer.produce_message(
                     KAFKA_MIGRATION_TOPIC, json.dumps(formatted_data).encode("utf-8")
                 )
 
@@ -69,7 +68,7 @@ class MigrationService:
 
         return success_count, failed_offset
 
-    def migrate_variant_data_sync(self, message_producer):
+    def migrate_variant_data_sync(self):
         try:
             chunk_size = 1
             last_successful_page = self.variant_repository.get_last_successful_page()
@@ -87,7 +86,7 @@ class MigrationService:
 
                     for variant_data in variants_data:
                         success, failed_offset = self.process_variant_data(
-                            variant_data, message_producer
+                            variant_data,
                         )
                         success_count += success
                         failure_count += 1 if failed_offset is not None else 0

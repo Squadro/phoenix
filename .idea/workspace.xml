@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="31d0030a-af70-4981-9d40-cf9c9b5a2803" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_migrator/service/service.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/service/service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_migrator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_migrator/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message_producer/kafka_producer.py" beforeDir="false" afterPath="$PROJECT_DIR$/message_producer/kafka_producer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,12 +258,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/message_producer/kafka_producer.py</url>
-          <line>32</line>
+          <line>44</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/data_migrator/service/service.py</url>
-          <line>87</line>
+          <line>86</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
