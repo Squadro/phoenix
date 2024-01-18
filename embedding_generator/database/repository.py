@@ -21,7 +21,7 @@ class SingletonMeta(type):
         return cls._instances[cls]
 
 
-class DatabaseHandler(metaclass=SingletonMeta):
+class EmbeddingRepository(metaclass=SingletonMeta):
     @staticmethod
     def save_embedding(data, embedding):
         try:
