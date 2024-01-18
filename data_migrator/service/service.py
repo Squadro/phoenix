@@ -70,11 +70,11 @@ class MigrationService:
 
     def migrate_variant_data_sync(self):
         try:
-            chunk_size = 1
+            chunk_size = 10
             last_successful_page = self.variant_repository.get_last_successful_page()
             page_number = last_successful_page + 1
 
-            while True and page_number < 2:
+            while True and page_number < 10:
                 try:
                     success_count = 0
                     failure_count = 0
