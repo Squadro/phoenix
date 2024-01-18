@@ -1,8 +1,0 @@
-/recommendation_errors.log
-__pycache__/
-.gitignore
-.idea
-/.env
-
-
-/logs/

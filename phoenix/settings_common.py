@@ -83,6 +83,15 @@ if not os.path.exists(LOGGING_DIR):
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(asctime)s - %(levelname)s - %(name)s - %(funcName)s - %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+        "simple": {
+            "format": "%(levelname)s - %(message)s",
+        },
+    },
     "handlers": {
         "file": {
             "level": "DEBUG",
@@ -90,6 +99,7 @@ LOGGING = {
             "filename": os.path.join(LOGGING_DIR, "debug.log"),
             "maxBytes": 1024 * 1024,  # 1 MB per file
             "backupCount": 5,  # Keep up to 5 backup files
+            "formatter": "verbose",
         },
     },
     "root": {
