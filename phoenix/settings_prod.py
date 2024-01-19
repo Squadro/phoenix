@@ -5,10 +5,10 @@ DEBUG = False
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
+        "NAME": "phoenix_staging ",
         "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "localhost",
+        "PASSWORD": "Bonito1234",
+        "HOST": "phoenix-staging.cluster-cnxne33fjape.ap-south-1.rds.amazonaws.com ",
         "PORT": "5432",
     },
     # 'read_replica': {
