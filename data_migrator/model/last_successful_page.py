@@ -7,6 +7,7 @@ class LastSuccessfulPage(models.Model):
     class Meta:
         # Additional options for the model
         db_table = "last_successful_page"  # Set the database table name
+        app_label = "default"
 
     def __str__(self):
         # String representation of the model instance

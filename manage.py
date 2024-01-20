@@ -11,6 +11,9 @@ def main():
     # Override with the specified settings module, if provided
     if len(sys.argv) > 1 and sys.argv[1] == "prod":
         os.environ["DJANGO_SETTINGS_MODULE"] = "phoenix.settings_prod"
+        # Remove the 'prod' argument to avoid 'Unknown command' error
+        sys.argv.pop(1)
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

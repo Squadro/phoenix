@@ -1,6 +1,7 @@
 from .settings_common import *  # noqa
 
 DEBUG = False
+ALLOWED_HOSTS = ["aws.com", "localhost"]
 
 DATABASES = {
     "default": {
@@ -8,7 +9,7 @@ DATABASES = {
         "NAME": "phoenix_staging ",
         "USER": "postgres",
         "PASSWORD": "Bonito1234",
-        "HOST": "phoenix-staging.cluster-cnxne33fjape.ap-south-1.rds.amazonaws.com ",
+        "HOST": "phoenix-staging-instance-1.cnxne33fjape.ap-south-1.rds.amazonaws.com",
         "PORT": "5432",
     },
     # 'read_replica': {
