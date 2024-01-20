@@ -13,6 +13,10 @@ def main():
         os.environ["DJANGO_SETTINGS_MODULE"] = "phoenix.settings_prod"
         # Remove the 'prod' argument to avoid 'Unknown command' error
         sys.argv.pop(1)
+    elif len(sys.argv) > 1 and sys.argv[1] == "staging":
+        os.environ["DJANGO_SETTINGS_MODULE"] = "phoenix.settings_staging"
+        # Remove the 'prod' argument to avoid 'Unknown command' error
+        sys.argv.pop(1)
 
     try:
         from django.core.management import execute_from_command_line

@@ -11,5 +11,7 @@ BASE_DELAY = 1
 KAFKA_BOOTSTRAP_SERVERS: str = "localhost:9092"
 
 # Check if the environment is set to production
-if os.environ.get("DJANGO_SETTINGS_MODULE") == "phoenix.settings_prod":
-    KAFKA_BOOTSTRAP_SERVERS = "production_kafka_servers"
+if os.environ.get("DJANGO_SETTINGS_MODULE") == "phoenix.settings_staging":
+    KAFKA_BOOTSTRAP_SERVERS = "43.204.227.153"
+elif os.environ.get("DJANGO_SETTINGS_MODULE") == "phoenix.settings_prod":
+    KAFKA_BOOTSTRAP_SERVERS = "43.204.227.153"
