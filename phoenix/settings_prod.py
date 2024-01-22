@@ -6,7 +6,7 @@ ALLOWED_HOSTS = ["aws.com", "localhost"]
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "phoenix_staging ",
+        "NAME": "phoenix_staging",
         "USER": "postgres",
         "PASSWORD": "Bonito1234",
         "HOST": "phoenix-staging-instance-1.cnxne33fjape.ap-south-1.rds.amazonaws.com",
