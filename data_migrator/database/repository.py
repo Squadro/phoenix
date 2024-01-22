@@ -37,8 +37,6 @@ class VariantRepository:
                 raise EmptyPage("The last page is empty.")
 
         # Store the last successful page after retrieving the data
-        self.store_last_successful_page(page_number)
-
         return variants_data
 
     @staticmethod

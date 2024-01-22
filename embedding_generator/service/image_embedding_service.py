@@ -37,4 +37,5 @@ class ImageEmbeddingService:
             return response.content
         except requests.exceptions.RequestException as e:
             logger.error(f"Error downloading image: {e}")
+        except Exception as e:
             raise

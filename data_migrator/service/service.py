@@ -74,7 +74,7 @@ class MigrationService:
             last_successful_page = self.variant_repository.get_last_successful_page()
             page_number = last_successful_page + 1
 
-            while True and page_number < 10:
+            while True and page_number < 20:
                 try:
                     success_count = 0
                     failure_count = 0
@@ -93,10 +93,10 @@ class MigrationService:
                         if failed_offset is not None:
                             failed_offsets.append(failed_offset)
 
-                        logger.info(
-                            f"Variant data migration done for {chunk_size} records. Success count: {success_count}, "
-                            f"Failure count: {failure_count}, 'failed_offsets': {failed_offsets}"
-                        )
+                    logger.info(
+                        f"Variant data migration done for {chunk_size} records. Success count: {success_count}, "
+                        f"Failure count: {failure_count}, 'failed_offsets': {failed_offsets}"
+                    )
 
                     page_number += 1
 
@@ -106,3 +106,6 @@ class MigrationService:
         except Exception as e:
             logger.error(f"Error in migrate_variant_data_sync: {e}")
             raise
+        finally:
+            page_number = locals().get("page_number", -1)
+            self.variant_repository.store_last_successful_page(page_number - 1)
