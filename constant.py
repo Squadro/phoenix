@@ -14,4 +14,4 @@ KAFKA_BOOTSTRAP_SERVERS: str = "localhost:9092"
 if os.environ.get("DJANGO_SETTINGS_MODULE") == "phoenix.settings_staging":
     KAFKA_BOOTSTRAP_SERVERS = "43.204.227.153"
 elif os.environ.get("DJANGO_SETTINGS_MODULE") == "phoenix.settings_prod":
-    KAFKA_BOOTSTRAP_SERVERS = "43.204.227.153"
+    KAFKA_BOOTSTRAP_SERVERS = "localhost:9092"

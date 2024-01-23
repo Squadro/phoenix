@@ -72,6 +72,7 @@ class MigrationService:
         try:
             chunk_size = 10
             last_successful_page = self.variant_repository.get_last_successful_page()
+            logger.info(f"Last Successful page: {last_successful_page}")
             page_number = last_successful_page + 1
 
             while True and page_number < 20:
@@ -101,6 +102,7 @@ class MigrationService:
                     page_number += 1
 
                 except EmptyPage:
+                    logger.error(f"All the data has been migrated")
                     break
 
         except Exception as e:
