@@ -43,10 +43,10 @@ class SearchRepository:
 
             product_ids = (
                 ProductVariantInformation.objects.filter(
-                    image_relation__in=similar_images
+                    product_variant_images__in=similar_images
                 )
                 .exclude(product_variant_product_id=product_id)
-                .exclude(product_variant_status=2)
+                .exclude(product_variant_status__in=[1, 2])
                 .values_list("product_variant_product_id", flat=True)
                 .distinct()[:5]
             )
