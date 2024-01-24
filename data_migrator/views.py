@@ -13,7 +13,7 @@ from message_producer.kafka_producer import KafkaProducer
 logger = logging.getLogger(__name__)
 
 
-async def migrate(request):
+async def migrate_images(request):
     try:
         # Start the asynchronous migration task
         message_producer = KafkaProducer(KAFKA_BOOTSTRAP_SERVERS)

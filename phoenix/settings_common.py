@@ -32,15 +32,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "message_consumer",
-    "message_producer",
-    "data_migrator",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "phoenix",
+    "message_consumer",
+    "message_producer",
+    "data_migrator",
+    "embedding_generator",
+    "similar_image_search",
 ]
 
 MIDDLEWARE = [
@@ -101,6 +104,15 @@ LOGGING = {
             "backupCount": 5,  # Keep up to 5 backup files
             "formatter": "verbose",
         },
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django.db.backends": {
+            "handlers": ["console"],
+            "level": "DEBUG",  # You can set it to 'INFO' or 'WARNING' depending on your needs
+        },
     },
     "root": {
         "handlers": ["file"],
@@ -119,39 +131,6 @@ GRAPH_MODELS = {
     "all_applications": True,
     "group_models": True,
 }
-
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "localhost",
-        "PORT": "5432",
-    },
-    # 'read_replica': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': os.environ.get('POSTGRES_DBNAME'),
-    #         'USER': os.environ.get('POSTGRES_USER'),
-    #         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-    #         'HOST': os.environ.get('POSTGRES_HOST'),
-    #         'PORT': os.environ.get('POSTGRES_PORT'),
-    #
-    #     }
-    "read_replica": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "bonito",
-        "USER": "bonito",
-        "PASSWORD": "RG]pn2W^'<(7",
-        "HOST": "bonito-app-rds-read-replica.cnxne33fjape.ap-south-1.rds.amazonaws.com",
-        "PORT": "5432",
-    },
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

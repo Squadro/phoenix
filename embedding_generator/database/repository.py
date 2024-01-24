@@ -4,7 +4,6 @@ import logging
 from django.db import IntegrityError, transaction
 
 from embedding_generator.model.image_embedding import ImageEmbedding
-from embedding_generator.model.product_image_relation import ProductImageRelation
 from embedding_generator.model.product_variant_information import (
     ProductVariantInformation,
 )
@@ -40,11 +39,7 @@ class EmbeddingRepository(metaclass=SingletonMeta):
                     product_variant_status=data.get("status", 0),
                     product_variant_product_id=data.get("product_id", None),
                 )
-
-                # Insert data into ProductImageRelation table
-                ProductImageRelation.objects.create(
-                    product=variant_obj, image=embedding_obj
-                )
+                variant_obj.product_variant_images.add(embedding_obj)
 
         except IntegrityError as e:
             # Handle duplicate key violation (IntegrityError) by logging a message
