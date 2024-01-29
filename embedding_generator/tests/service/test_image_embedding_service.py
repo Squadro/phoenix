@@ -7,7 +7,6 @@ import requests
 from embedding_generator.service.image_embedding_service import (
     ImageEmbeddingService,
 )  # Corrected import
-from phoenix.settings_dev import *  # noqa
 
 
 @pytest.fixture

@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,6 +29,7 @@ SECRET_KEY = "django-insecure-@7k4y0l%s#8c3l9_fzm*#lkln@@%%a+4ykfhw)ymty5z3d1ooc
 DEBUG = True
 
 ALLOWED_HOSTS = []
+load_dotenv()
 
 
 # Application definition
@@ -172,3 +175,33 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("DEFAULT_DB_NAME"),
+        "USER": os.environ.get("DEFAULT_DB_USER"),
+        "PASSWORD": os.environ.get("DEFAULT_DB_PASSWORD"),
+        "HOST": os.environ.get("DEFAULT_DB_HOST"),
+        "PORT": os.environ.get("DEFAULT_DB_PORT"),
+    },
+    # "default": {
+    #     "ENGINE": "django.db.backends.postgresql",
+    #     "NAME": "test",
+    #     "USER": "postgres",
+    #     "PASSWORD": "postgres",
+    #     "HOST": "localhost",
+    #     "PORT": "5432",
+    # },
+    "read_replica": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("READ_REPLICA_DB_NAME"),
+        "USER": os.environ.get("READ_REPLICA_USER"),
+        "PASSWORD": os.environ.get("READ_REPLICA_PASSWORD"),
+        "HOST": os.environ.get("READ_REPLICA_HOST"),
+        "PORT": os.environ.get("READ_REPLICA_PORT"),
+    },
+}
+
+KAFKA_BOOTSTRAP_SERVERS_IP = os.environ.get("KAFKA_BOOTSTRAP_SERVERS")
