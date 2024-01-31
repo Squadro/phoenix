@@ -8,8 +8,9 @@ class Command(BaseCommand):
     help = "Consume messages from Kafka topic"
 
     def handle(self, *args, **options):
+
         consumers = []
-        no_of_consumers = 5
+        no_of_consumers = 1
         kafka_bootstrap_servers = KAFKA_BOOTSTRAP_SERVERS
         kafka_group_id = KAFKA_GROUP_ID
         kafka_topics = KAFKA_MIGRATION_TOPIC

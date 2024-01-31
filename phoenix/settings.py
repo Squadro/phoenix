@@ -179,7 +179,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 DATABASES = {
     "default": {
-        "ENGINE": "dj_db_conn_pool.backends.postgresql",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": os.environ.get("DEFAULT_DB_NAME"),
         "USER": os.environ.get("DEFAULT_DB_USER"),
         "PASSWORD": os.environ.get("DEFAULT_DB_PASSWORD"),

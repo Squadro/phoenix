@@ -3,7 +3,8 @@ import json
 import logging
 import threading
 
-from confluent_kafka import Consumer, KafkaException
+from confluent_kafka import Consumer, KafkaError
+
 from message_consumer.consumer_interfaces import MessageConsumer
 
 logger = logging.getLogger(__name__)
@@ -24,14 +25,14 @@ class KafkaConsumer(threading.Thread, MessageConsumer):
 
     def run(self):
         consumer_config = {
-            'bootstrap.servers': self.bootstrap_servers,
-            'group.id': self.group_id,
-            'auto.offset.reset': 'earliest',
-            'enable.auto.commit': False  # Disable automatic commit to manage offsets manually
+            "bootstrap.servers": self.bootstrap_servers,
+            "group.id": self.group_id,
+            "auto.offset.reset": "earliest",
+            "enable.auto.commit": False,  # Disable automatic commit to manage offsets manually
         }
 
         self.consumer = Consumer(consumer_config)
-        topic = 'migration_messages'
+        topic = "migration_messages"
         self.consumer.subscribe([topic])
 
         try:
@@ -41,13 +42,13 @@ class KafkaConsumer(threading.Thread, MessageConsumer):
                 if msg is None:
                     continue
                 if msg.error():
-                    if msg.error().code() == KafkaException._PARTITION_EOF:
+                    if msg.error().code() == KafkaError._PARTITION_EOF:
                         # End of partition event
                         continue
                     else:
                         logger.error(msg.error())
                         break
-                json_data = json.loads(msg.value().decode('utf-8'))
+                json_data = json.loads(msg.value().decode("utf-8"))
                 # Process the Kafka message using the provided callback
                 self.process_message(json_data)
 

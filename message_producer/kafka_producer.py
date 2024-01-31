@@ -1,4 +1,5 @@
 import logging
+from uuid import uuid4
 
 from confluent_kafka import Producer
 
@@ -48,7 +49,12 @@ class KafkaProducer(MessageProducer):
 
         try:
             # Produce message to the specified topic
-            producer.produce(topic, value=message, callback=self.delivery_callback)
+            producer.produce(
+                topic,
+                value=message,
+                key=str(uuid4()),
+                on_delivery=self.delivery_callback,
+            )
 
             # Wait for any outstanding messages to be delivered and delivery reports received
             producer.flush()

@@ -6,6 +6,7 @@ import logging
 from django.http import JsonResponse
 
 from constant import KAFKA_BOOTSTRAP_SERVERS
+from constant import getCurrentTime
 from data_migrator.database.repository import VariantRepository
 from data_migrator.service.service import MigrationService
 from message_producer.kafka_producer import KafkaProducer
@@ -27,7 +28,7 @@ async def migrate_images(request):
             None,
             migration_service.migrate_variant_data_sync,
         )
-
+        logger.info(f"Migration Started time: {getCurrentTime()}")
         # Respond with 201 status and task ID
         return JsonResponse(
             {"status": "Variant data migration started successfully"}, status=201

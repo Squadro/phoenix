@@ -8,6 +8,7 @@ import time
 from django.core.paginator import EmptyPage
 
 from constant import KAFKA_MIGRATION_TOPIC, MAX_RETRIES, BASE_DELAY
+from constant import getCurrentTime
 
 logger = logging.getLogger(__name__)
 
@@ -75,7 +76,7 @@ class MigrationService:
             logger.info(f"Last Successful page: {last_successful_page}")
             page_number = last_successful_page + 1
 
-            while True:
+            while True and page_number<5:
                 try:
                     success_count = 0
                     failure_count = 0
@@ -102,7 +103,7 @@ class MigrationService:
                     page_number += 1
 
                 except EmptyPage:
-                    logger.error(f"All the data has been migrated")
+                    logger.info(f"Migration has ended at time:{getCurrentTime()}")
                     break
 
         except Exception as e:
