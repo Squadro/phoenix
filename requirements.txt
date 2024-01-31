@@ -14,3 +14,4 @@ confluent_kafka
 #Install Postgres
 celery~=5.3.6
 gunicorn==21.2.0
+django-db-connection-pool~=1.2.4
