@@ -56,7 +56,7 @@ class VariantRepository:
         return (
             ActiveStorageAttachments.objects.select_related("blob", "record_id")
             .filter(record_type="Commerce::ProductVariant", name="images")
-            .order_by("created_at")
+            .order_by("-created_at")
             .values(
                 "id",
                 "blob_id",

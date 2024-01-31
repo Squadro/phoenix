@@ -19,6 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("migrate/", include("data_migrator.urls")),
-    path("", include("similar_image_search.urls")),
+    path("search/", include("similar_image_search.urls")),
     # path('', include('embedding_generator.urls')),
 ]

@@ -4,7 +4,7 @@ from django.http import HttpResponseBadRequest, HttpResponse, Http404
 from similar_image_search.service.service import SearchService
 
 
-def search(request):
+def searchImages(request):
     # Get the productId and Image_id from the request's GET parameters
     product_id = request.GET.get("product_id", None)
     image_id = request.GET.get("image_id", None)
