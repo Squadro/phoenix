@@ -1,6 +1,7 @@
 from django.core.management import BaseCommand
 
 from constant import KAFKA_BOOTSTRAP_SERVERS, KAFKA_GROUP_ID, KAFKA_MIGRATION_TOPIC
+from message_consumer.callbacks import custom_callback
 from message_consumer.kafka_consumer import KafkaConsumer
 
 
@@ -8,7 +9,6 @@ class Command(BaseCommand):
     help = "Consume messages from Kafka topic"
 
     def handle(self, *args, **options):
-
         consumers = []
         no_of_consumers = 1
         kafka_bootstrap_servers = KAFKA_BOOTSTRAP_SERVERS
@@ -18,6 +18,7 @@ class Command(BaseCommand):
             consumer = KafkaConsumer(
                 kafka_bootstrap_servers, kafka_group_id, kafka_topics
             )
+            consumer.process_message = custom_callback
             consumer.start()
             consumers.append(consumer)
         try:

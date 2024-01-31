@@ -111,12 +111,12 @@ LOGGING = {
             "class": "logging.StreamHandler",
         },
     },
-    "loggers": {
-        "django.db.backends": {
-            "handlers": ["console"],
-            "level": "DEBUG",  # You can set it to 'INFO' or 'WARNING' depending on your needs
-        },
-    },
+    # "loggers": {
+    #     "django.db.backends": {
+    #         "handlers": ["console"],
+    #         "level": "DEBUG",  # You can set it to 'INFO' or 'WARNING' depending on your needs
+    #     },
+    # },
     "root": {
         "handlers": ["file"],
         "level": "DEBUG",
