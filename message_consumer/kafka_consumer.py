@@ -22,6 +22,7 @@ class KafkaConsumer(threading.Thread, MessageConsumer):
     def process_message(self, payload):
         # Implement the message processing logic here
         logger.info(f"Default callback received message: {payload}")
+        return True
 
     def run(self):
         consumer_config = {
@@ -50,10 +51,16 @@ class KafkaConsumer(threading.Thread, MessageConsumer):
                         break
                 json_data = json.loads(msg.value().decode("utf-8"))
                 # Process the Kafka message using the provided callback
-                self.process_message(json_data)
+                processed = self.process_message(json_data)
 
                 # Manually commit the offset after processing the message
-                self.consumer.commit(msg)
+                last_offset = None
+                if processed:
+                    last_offset = msg.offset()  # Update the last processed offset
+
+                # Manually commit the offset after processing the message
+                if last_offset is not None:
+                    self.consumer.commit()
 
         except Exception as e:
             logger.exception(f"An error occurred: {e}")

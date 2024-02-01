@@ -10,5 +10,4 @@ logger = logging.getLogger(__name__)
 def custom_callback(message):
     logger.info(f"Processing message from Kafka:{message}")
     service = ImageEmbeddingService()
-    service.process_images(message)
-
+    return service.process_images(message)

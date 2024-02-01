@@ -37,8 +37,10 @@ class ImageEmbeddingService:
                     self.download_image(image_url)
                 )
             self.database_handler.save_embedding(message, embedding)
+            return True
         except Exception as e:
             logger.error(f"Error processing images: {e}")
+            return False
 
     @staticmethod
     def download_image(image_url):
