@@ -31,9 +31,7 @@ class ImageEmbeddingService:
             if not self.database_handler.checkIfImageEmbeddingExists(
                 message["image_id"]
             ):
-                logger.info(
-                    f"Creating Embedding for ImageId: {message['image_id']}"
-                )
+                logger.info(f"Creating Embedding for ImageId: {message['image_id']}")
                 image_url = CLOUDFRONT_URL + message["s3_key"]
                 embedding = self.image_processor.create_embedding(
                     self.download_image(image_url)

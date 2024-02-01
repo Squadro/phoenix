@@ -2,7 +2,12 @@ from concurrent.futures import ThreadPoolExecutor
 
 from django.core.management import BaseCommand
 
-from constant import KAFKA_BOOTSTRAP_SERVERS, KAFKA_GROUP_ID, KAFKA_MIGRATION_TOPIC
+from constant import (
+    KAFKA_BOOTSTRAP_SERVERS,
+    KAFKA_GROUP_ID,
+    KAFKA_MIGRATION_TOPIC,
+    KAFKA_CONSUMER_NUMBER,
+)
 from message_consumer.callbacks import custom_callback
 from message_consumer.kafka_consumer import KafkaConsumer
 
@@ -17,7 +22,7 @@ class Command(BaseCommand):
         return consumer
 
     def handle(self, *args, **options):
-        no_of_consumers = 10
+        no_of_consumers = KAFKA_CONSUMER_NUMBER
         kafka_bootstrap_servers = KAFKA_BOOTSTRAP_SERVERS
         kafka_group_id = KAFKA_GROUP_ID
         kafka_topics = KAFKA_MIGRATION_TOPIC
