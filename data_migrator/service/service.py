@@ -76,7 +76,7 @@ class MigrationService:
             logger.info(f"Last Successful page: {last_successful_page}")
             page_number = last_successful_page + 1
 
-            while True and page_number < 11:
+            while True:
                 try:
                     success_count = 0
                     failure_count = 0
