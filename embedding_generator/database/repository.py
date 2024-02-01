@@ -12,7 +12,13 @@ logger = logging.getLogger(__name__)
 
 
 class EmbeddingRepository:
-    def save_embedding(self, data, embedding):
+    def checkIfImageEmbeddingExists(self, image_id):
+        return ImageEmbedding.objects.filter(image_id=image_id).exists()
+
+    def save_embedding(self, data, embedding=None):
+        logger.info(
+            f"Saving Product Variant {data['product_variant_id']} and image {data['image_id']}"
+        )
         try:
             image_embedding_object, created = ImageEmbedding.objects.get_or_create(
                 image_s3_key=data["s3_key"],
@@ -35,6 +41,7 @@ class EmbeddingRepository:
         except IntegrityError as e:
             # Handle duplicate key violation (IntegrityError) by logging a message
             logger.warning(f"Duplicate key violation: {e}")
+            pass
             # You can choose to ignore or handle it differently
 
         except Exception as e:

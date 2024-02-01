@@ -18,13 +18,26 @@ class ImageEmbeddingService:
         self.database_handler = EmbeddingRepository()
         self.data_processor = DataProcessingService()
 
+    # Message: {'product_variant_id': 98606, 'product_id': 26328, 'image_id': 716028, 's3_key':
+    # 'MBqDWNMn2fpgooHPxYgRgRJF', 'status': 0, 'product_erp_code': 'BD-VRM-2023-0214'}
     def process_images(self, message):
+        logger.info(
+            f"Processing message with ProductVariantId: {message['product_variant_id']} and "
+            f"ImageId: {message['image_id']}"
+        )
         try:
             message = self.data_processor.process_data(message)
-            image_url = CLOUDFRONT_URL + message["s3_key"]
-            embedding = self.image_processor.create_embedding(
-                self.download_image(image_url)
-            )
+            embedding = None
+            if not self.database_handler.checkIfImageEmbeddingExists(
+                message["image_id"]
+            ):
+                logger.info(
+                    f"Creating Embedding for ImageId: {message['image_id']}"
+                )
+                image_url = CLOUDFRONT_URL + message["s3_key"]
+                embedding = self.image_processor.create_embedding(
+                    self.download_image(image_url)
+                )
             self.database_handler.save_embedding(message, embedding)
         except Exception as e:
             logger.error(f"Error processing images: {e}")
