@@ -1,6 +1,6 @@
 import logging
 
-from similar_image_search.database.respository import SearchRepository
+from similar_image_search.database.repository import SearchRepository
 
 logger = logging.getLogger(__name__)
 

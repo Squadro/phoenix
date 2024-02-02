@@ -41,7 +41,7 @@ class SearchRepository:
 
             # Get the related ProductVariantInformation instances for each similar image
 
-            product_ids = (
+            product_ids = list(
                 ProductVariantInformation.objects.filter(
                     product_variant_images__in=similar_images
                 )
