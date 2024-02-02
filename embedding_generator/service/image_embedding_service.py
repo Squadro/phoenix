@@ -33,15 +33,16 @@ class ImageEmbeddingService:
                 message["image_id"]
             ):
                 logger.info(f"Creating Embedding for ImageId: {message['image_id']}")
-
-                embedding = self.image_processor.create_embedding(
-                    self.download_image(message["s3_key"])
-                )
+                image_content = self.download_image(message["s3_key"])
+                embedding = self.image_processor.create_embedding(image_content)
             self.database_handler.save_embedding(message, embedding)
             return True
         except Exception as e:
             logger.error(f"Error processing images: {e}")
             return False
+        finally:
+            del image_content
+            del embedding
 
     @staticmethod
     def download_image(
