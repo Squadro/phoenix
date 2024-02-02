@@ -1,10 +1,11 @@
 # image_embedding_service.py
 
 import logging
+import time
 
 import requests
 
-from constant import CLOUDFRONT_URL
+from constant import CLOUDFRONT_URL, MAX_RETRIES, BASE_DELAY, MAX_DELAY
 from data_processor.service.data_processing_service import DataProcessingService
 from embedding_generator.database.repository import EmbeddingRepository
 from embedding_generator.processor.image_embedding_processor import EmbeddingProcessor
@@ -32,9 +33,9 @@ class ImageEmbeddingService:
                 message["image_id"]
             ):
                 logger.info(f"Creating Embedding for ImageId: {message['image_id']}")
-                image_url = CLOUDFRONT_URL + message["s3_key"]
+
                 embedding = self.image_processor.create_embedding(
-                    self.download_image(image_url)
+                    self.download_image(message["s3_key"])
                 )
             self.database_handler.save_embedding(message, embedding)
             return True
@@ -43,12 +44,25 @@ class ImageEmbeddingService:
             return False
 
     @staticmethod
-    def download_image(image_url):
-        try:
-            response = requests.get(image_url)
-            response.raise_for_status()
-            return response.content
-        except requests.exceptions.RequestException as e:
-            logger.error(f"Error downloading image: {e}")
-        except Exception as e:
-            raise
+    def download_image(
+        s3_key, max_retries=MAX_RETRIES, base_delay=BASE_DELAY, max_delay=MAX_DELAY
+    ):
+        image_url = CLOUDFRONT_URL + s3_key
+        for attempt in range(1, max_retries + 1):
+            try:
+                response = requests.get(image_url)
+                response.raise_for_status()
+                return response.content
+            except requests.exceptions.RequestException as e:
+                logger.error(
+                    f"Error downloading image on attempt {attempt}/{max_retries}: {e}"
+                )
+                if attempt < max_retries:
+                    delay = min(base_delay * (2 ** (attempt - 1)), max_delay)
+                    logger.info(f"Retrying in {delay} seconds...")
+                    time.sleep(delay)
+                else:
+                    logger.error(f"Max retries reached. Unable to download image.")
+                    break
+            except Exception as e:
+                raise
