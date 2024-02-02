@@ -1,5 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponseBadRequest, HttpResponse, Http404
+from django.http import HttpResponseBadRequest, Http404, JsonResponse
 
 from similar_image_search.service.service import SearchService
 
@@ -21,4 +21,5 @@ def searchImages(request):
         raise Http404(f"ImageEmbedding with ID {image_id} does not exist.")
 
     # Return a response, for example, just an HTTP response with the parameters
-    return HttpResponse(productIds)
+    response_data = {"product_ids": productIds}
+    return JsonResponse(response_data, status=200, safe=False)
