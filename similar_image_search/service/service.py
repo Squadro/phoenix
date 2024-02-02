@@ -20,6 +20,9 @@ class SearchService:
 
     # Reverse Image Search
     def getSimilarImageSearchProductId(self, image_id, product_id):
+        logger.info(
+            f"Searching for products having images similar to image with image_id:{image_id}"
+        )
         try:
             return self.search_repository.getSearchSimilarProductByImage(
                 image_id, product_id
