@@ -1,9 +1,10 @@
 # image_embedding_processor.py
+import logging
 from io import BytesIO
+
+import torch
 from PIL import Image
 from transformers import CLIPModel, CLIPProcessor, CLIPTokenizer
-import torch
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -24,9 +25,7 @@ class EmbeddingProcessor:
         try:
             image_content = Image.open(BytesIO(image_content))
             image_input = self.processor(
-                text=None,
-                images=image_content,
-                return_tensors="pt"
+                text=None, images=image_content, return_tensors="pt"
             )["pixel_values"].to(self.device)
             embedding = self.model.get_image_features(image_input)
             embedding_as_np = embedding.cpu().detach().numpy()

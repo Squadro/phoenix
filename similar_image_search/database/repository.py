@@ -35,16 +35,14 @@ class SearchRepository:
         try:
             current_embedding = self.__getSearchEmbedding(image_id)
 
-            similar_images = ImageEmbedding.objects.annotate(
-                similarity=CosineDistance("image_embedding", current_embedding)
-            ).order_by("-similarity")
-
             # Get the related ProductVariantInformation instances for each similar image
-
             product_ids = list(
-                ProductVariantInformation.objects.filter(
-                    product_variant_images__in=similar_images
+                ProductVariantInformation.objects.annotate(
+                    similarity=CosineDistance(
+                        "product_variant_images__image_embedding", current_embedding
+                    )
                 )
+                .order_by("-similarity")
                 .exclude(product_variant_product_id=product_id)
                 .exclude(product_variant_status__in=[1, 2])
                 .values_list("product_variant_product_id", flat=True)
