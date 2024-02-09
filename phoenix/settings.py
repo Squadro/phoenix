@@ -18,23 +18,19 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-@7k4y0l%s#8c3l9_fzm*#lkln@@%%a+4ykfhw)ymty5z3d1ooc"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = ["*"]
 load_dotenv()
-
 
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -119,16 +115,14 @@ LOGGING = {
     # },
     "root": {
         "handlers": ["file"],
-        "level": "DEBUG",
+        "level": os.environ.get("DEBUG_VALUE"),
     },
 }
-
 
 MESSAGE_CONSUMER_IMPLEMENTATION = "messaging.consumer.kafka_consumer.KafkaConsumer"
 MESSAGE_PRODUCER_IMPLEMENTATION = "messaging.producer.kafka_producer.KafkaProducer"
 
 DATABASE_ROUTERS = ["data_migrator.routers.database_router.ReadOnlyDBRouter"]
-
 
 GRAPH_MODELS = {
     "all_applications": True,
@@ -153,7 +147,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -165,7 +158,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -175,7 +167,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 
 DATABASES = {
     "default": {
@@ -205,3 +196,4 @@ DATABASES = {
 }
 
 KAFKA_BOOTSTRAP_SERVERS_IP = os.environ.get("KAFKA_BOOTSTRAP_SERVERS")
+# SECURITY WARNING: don't run with debug turned on in production!
