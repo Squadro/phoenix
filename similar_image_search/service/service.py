@@ -1,5 +1,6 @@
 import logging
 
+from embedding_generator.service.embedding_service import EmbeddingService
 from similar_image_search.database.repository import SearchRepository
 
 logger = logging.getLogger(__name__)
@@ -17,6 +18,7 @@ class SearchService:
         if not hasattr(self, "initialized"):
             self.initialized = True
             self.search_repository = SearchRepository()
+            self.embedding_service = EmbeddingService()
 
     # Reverse Image Search
     def getSimilarImageSearchProductId(self, image_id, product_id):
@@ -30,3 +32,16 @@ class SearchService:
         except Exception as e:
             logger.error(f"Exception occurred {e} ")
             raise
+
+    def getSimilarImageSearchForTextProductId(self, text):
+        logger.info(
+            f"Searching for products having images similar to text:{text}"
+        )
+        try:
+            embedding = self.embedding_service.process_text(text)
+            return self.search_repository.getSearchSimilarProductByText(
+                embedding
+            )
+        except Exception as e:
+            logger.error(f"Exception occurred {e} ")
+            raise e

@@ -55,3 +55,22 @@ class SearchRepository:
         except Exception as e:  # Corrected syntax here
             logger.error(f"An error occurred in getSearchSimilarProduct: {e}")
             raise
+
+    def getSearchSimilarProductByText(self, embedding):
+        try:
+            # Get the related ProductVariantInformation instances for each similar image
+            product_ids = list(
+                ProductVariantInformation.objects.annotate(
+                    similarity=CosineDistance(
+                        "product_variant_images__image_embedding", embedding
+                    )
+                )
+                .order_by("similarity")
+                .exclude(product_variant_status__in=[1, 2])
+                .values_list("product_variant_product_id", flat=True)
+                .distinct()[:5]
+            )
+            return product_ids
+        except Exception as e:  # Corrected syntax here
+            logger.error(f"An error occurred in getSearchSimilarProduct: {e}")
+            raise

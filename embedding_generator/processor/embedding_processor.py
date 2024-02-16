@@ -1,4 +1,4 @@
-# image_embedding_processor.py
+# embedding_processor.py
 import logging
 from io import BytesIO
 
@@ -33,3 +33,13 @@ class EmbeddingProcessor:
         except Exception as e:
             logger.error(f"Error creating embedding: {e}")
             raise
+
+    def create_embedding_for_text(self, text):
+        logger.info(f"Creating embedding for text :{text}")
+        try:
+            text_input = self.processor(text=text, return_tensors="pt", padding=True)
+            text_embedding = self.model.get_text_features(**text_input).detach().cpu().numpy().flatten()
+            return text_embedding
+        except Exception as e:
+            logger.error(f"Error creating embedding for text: {e}")
+            raise e

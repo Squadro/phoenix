@@ -3,9 +3,9 @@ from unittest.mock import patch, MagicMock
 import pytest
 import requests
 
-# Assuming constant.py is in the same directory as image_embedding_service.py
-from embedding_generator.service.image_embedding_service import (
-    ImageEmbeddingService,
+# Assuming constant.py is in the same directory as embedding_service.py
+from embedding_generator.service.embedding_service import (
+    EmbeddingService,
 )  # Corrected import
 
 
@@ -53,7 +53,7 @@ def test_process_images_success(mock_dependencies):
     mock_requests_get.return_value.content = b"fake_image_data"
 
     # Create ImageEmbeddingService instance
-    image_embedding_service = ImageEmbeddingService()
+    image_embedding_service = EmbeddingService()
 
     # Call the method to be tested
     image_embedding_service.process_images(message)
@@ -73,7 +73,7 @@ def test_download_image_error():
     mock_requests_get.side_effect = requests.exceptions.RequestException("Mocked error")
 
     with pytest.raises(requests.exceptions.RequestException):
-        ImageEmbeddingService.download_image("https://example.com/image.jpg")
+        EmbeddingService.download_image("https://example.com/image.jpg")
 
 
 def test_process_images_error(mock_dependencies):
@@ -83,7 +83,7 @@ def test_process_images_error(mock_dependencies):
     message = {"s3_key": "/path/to/image.jpg"}
 
     # Create ImageEmbeddingService instance
-    image_embedding_service = ImageEmbeddingService()
+    image_embedding_service = EmbeddingService()
 
     # Mock error during image download
     mock_requests_get.side_effect = requests.exceptions.RequestException("Mocked error")

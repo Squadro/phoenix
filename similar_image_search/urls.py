@@ -17,10 +17,11 @@ Including another URLconf
 
 from django.urls import path
 
-from similar_image_search.views import searchImages
+from similar_image_search.views import searchImages, searchImagesForText
 
 urlpatterns = [
     path("images/", searchImages, name="searchImages"),
+    path("text/", searchImagesForText, name="searchImagesForText"),
     # Have to Remove this URL
     # path('check/', check, name='check'),
 ]

@@ -1,4 +1,4 @@
-# image_embedding_service.py
+# embedding_service.py
 
 import logging
 import time
@@ -8,14 +8,14 @@ import requests
 from constant import CLOUDFRONT_URL, MAX_RETRIES, BASE_DELAY, MAX_DELAY
 from data_processor.service.data_processing_service import DataProcessingService
 from embedding_generator.database.repository import EmbeddingRepository
-from embedding_generator.processor.image_embedding_processor import EmbeddingProcessor
+from embedding_generator.processor.embedding_processor import EmbeddingProcessor
 
 logger = logging.getLogger(__name__)
 
 
-class ImageEmbeddingService:
+class EmbeddingService:
     def __init__(self):
-        self.image_processor = EmbeddingProcessor()
+        self.embedding_processor = EmbeddingProcessor()
         self.database_handler = EmbeddingRepository()
         self.data_processor = DataProcessingService()
 
@@ -30,11 +30,11 @@ class ImageEmbeddingService:
             message = self.data_processor.process_data(message)
             embedding = None
             if not self.database_handler.checkIfImageEmbeddingExists(
-                message["image_id"]
+                    message["image_id"]
             ):
                 logger.info(f"Creating Embedding for ImageId: {message['image_id']}")
                 image_content = self.download_image(message["s3_key"])
-                embedding = self.image_processor.create_embedding(image_content)
+                embedding = self.embedding_processor.create_embedding(image_content)
             self.database_handler.save_embedding(message, embedding)
             return True
         except Exception as e:
@@ -46,7 +46,7 @@ class ImageEmbeddingService:
 
     @staticmethod
     def download_image(
-        s3_key, max_retries=MAX_RETRIES, base_delay=BASE_DELAY, max_delay=MAX_DELAY
+            s3_key, max_retries=MAX_RETRIES, base_delay=BASE_DELAY, max_delay=MAX_DELAY
     ):
         image_url = CLOUDFRONT_URL + s3_key
         for attempt in range(1, max_retries + 1):
@@ -66,4 +66,10 @@ class ImageEmbeddingService:
                     logger.error(f"Max retries reached. Unable to download image.")
                     break
             except Exception as e:
-                raise
+                raise e
+
+    def process_text(self, text):
+        try:
+            return self.embedding_processor.create_embedding_for_text(text)
+        except Exception as e:
+            raise e
