@@ -32,7 +32,7 @@ class EmbeddingProcessor:
             return embedding_as_np.flatten()
         except Exception as e:
             logger.error(f"Error creating embedding: {e}")
-            raise
+            raise e
 
     def create_embedding_for_text(self, text):
         logger.info(f"Creating embedding for text :{text}")

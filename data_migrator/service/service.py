@@ -59,7 +59,7 @@ class MigrationService:
                 retries += 1
 
                 # Calculate exponential backoff delay
-                delay = BASE_DELAY * (2**retries) + random.uniform(
+                delay = BASE_DELAY * (2 ** retries) + random.uniform(
                     0, 0.1
                 )  # Add some jitter
                 logger.warning(
@@ -108,7 +108,7 @@ class MigrationService:
 
         except Exception as e:
             logger.error(f"Error in migrate_variant_data_sync: {e}")
-            raise
+            raise e
         finally:
             page_number = locals().get("page_number", -1)
             self.variant_repository.store_last_successful_page(page_number - 1)

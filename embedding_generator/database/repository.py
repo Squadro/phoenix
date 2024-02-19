@@ -46,4 +46,4 @@ class EmbeddingRepository:
 
         except Exception as e:
             logger.error(f"Error saving embedding to the database: {e}")
-            raise
+            raise e

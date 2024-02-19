@@ -31,7 +31,7 @@ class SearchService:
             )
         except Exception as e:
             logger.error(f"Exception occurred {e} ")
-            raise
+            raise e
 
     def getSimilarImageSearchForTextProductId(self, text):
         logger.info(

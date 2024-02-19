@@ -54,7 +54,7 @@ class SearchRepository:
             raise Http404(f"ImageEmbedding with ID {image_id} does not exist.")
         except Exception as e:  # Corrected syntax here
             logger.error(f"An error occurred in getSearchSimilarProduct: {e}")
-            raise
+            raise e
 
     def getSearchSimilarProductByText(self, embedding):
         try:
@@ -73,4 +73,4 @@ class SearchRepository:
             return product_ids
         except Exception as e:  # Corrected syntax here
             logger.error(f"An error occurred in getSearchSimilarProduct: {e}")
-            raise
+            raise e
