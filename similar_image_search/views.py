@@ -1,3 +1,5 @@
+import logging
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, JsonResponse
 from rest_framework.decorators import api_view
@@ -5,6 +7,8 @@ from rest_framework.response import Response
 
 from similar_image_search.serializer import SearchImagesSerializer, SearchImagesForTextSerializer
 from similar_image_search.service.service import SearchService
+
+logger = logging.getLogger(__name__)
 
 
 @api_view(['GET'])
@@ -24,6 +28,9 @@ def searchImages(request):
     except ObjectDoesNotExist:
         raise Http404(f"ImageEmbedding with ID {image_id} does not exist.")
 
+    except Exception as e:
+        logger.error(f"Internal Server Error: {e}")
+        return JsonResponse({"error": "Internal Server Error"}, status=500)
     response_data = {"product_ids": product_ids}
     return JsonResponse(response_data, status=200, safe=False)
 
@@ -41,8 +48,9 @@ def searchImagesForText(request):
         service = SearchService()
         product_ids = service.getSimilarImageSearchForTextProductId(text)
 
-    except ObjectDoesNotExist:
-        raise Http404(f"ImageEmbedding with ID does not exist.")
+    except Exception as e:
+        logger.error(f"Internal Server Error: {e}")
+        return JsonResponse({"error": "Internal Server Error"}, status=500)
 
     response_data = {"product_ids": product_ids}
     return JsonResponse(response_data, status=200, safe=False)
