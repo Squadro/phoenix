@@ -20,9 +20,9 @@ from django.urls import path
 from similar_image_search.views import searchImages, searchImagesForText, handle_payload
 
 urlpatterns = [
-    path("images/", searchImages, name="searchImages"),
-    path("text/", searchImagesForText, name="searchImagesForText"),
-    path("updateStatus/", handle_payload, name="updateStatus"),
+    path("images", searchImages, name="searchImages"),
+    path("text", searchImagesForText, name="searchImagesForText"),
+    path("updateStatus", handle_payload, name="updateStatus"),
     # Have to Remove this URL
     # path('check/', check, name='check'),
 ]
