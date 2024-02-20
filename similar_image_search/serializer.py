@@ -11,34 +11,35 @@ class SearchImagesForTextSerializer(serializers.Serializer):
 
 
 class StatusSerializer(serializers.Serializer):
-    product_id_status = serializers.JSONField()
-    product_variant_id_status = serializers.JSONField()
+    product_id_status = serializers.JSONField(required=False)
+    product_variant_id_status = serializers.JSONField(required=False)
 
-    def validate_product_id_status(self, value):
-        if not isinstance(value, dict):
-            raise serializers.ValidationError("Invalid data structure for product_id_status.")
+    ALLOWED_STATUSES = {0, 1, 2}
 
-        for status, product_list in value.items():
+    def validate(self, data):
+        product_id_status = data.get('product_id_status')
+        product_variant_id_status = data.get('product_variant_id_status')
+
+        if not product_id_status and not product_variant_id_status:
+            raise serializers.ValidationError("Either 'product_id_status' or 'product_variant_id_status' must be "
+                                              "present.")
+
+        if product_id_status:
+            self.validate_status_data(product_id_status, "product_id_status")
+
+        if product_variant_id_status:
+            self.validate_status_data(product_variant_id_status, "product_variant_id_status")
+
+        return data
+
+    def validate_status_data(self, status_data, field_name):
+        if not isinstance(status_data, dict):
+            raise serializers.ValidationError(f"Invalid data structure for {field_name}.")
+
+        for status, product_list in status_data.items():
             if not isinstance(product_list, list) or not product_list:
                 raise serializers.ValidationError(f"Product list for status {status} cannot be empty.")
 
-        return value
-
-    def validate_product_variant_id_status(self, value):
-        if not isinstance(value, dict):
-            raise serializers.ValidationError("Invalid data structure for product_variant_id_status.")
-
-        for status, product_list in value.items():
-            if not isinstance(product_list, list) or not product_list:
-                raise serializers.ValidationError(f"Product Variant list for status {status} cannot be empty.")
-
-        return value
-
-    # def validate_payload(self, value):
-    #     valid_keys = {1, 2, 3}
-    #     keys = set(value.keys())
-    #
-    #     if keys != valid_keys:
-    #         raise serializers.ValidationError("Invalid product_id keys. Only 1, 2, and 3 are allowed.")
-    #
-    #     return value
+            if int(status) not in self.ALLOWED_STATUSES:
+                raise serializers.ValidationError(
+                    f"Invalid status value {status}. Allowed values are {self.ALLOWED_STATUSES}.")
