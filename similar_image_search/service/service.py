@@ -45,3 +45,15 @@ class SearchService:
         except Exception as e:
             logger.error(f"Exception occurred {e} ")
             raise e
+
+    def updateStatus(self, product_id_status_data, product_variant_id_status_data):
+        logger.info(
+            f"Updating status for all product variants with those product ids:{product_id_status_data}"
+        )
+        try:
+
+            self.search_repository.updateStatus(product_id_status_data, product_variant_id_status_data)
+
+        except Exception as e:
+            logger.error(f"Exception occurred {e} ")
+            raise e

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
+import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -197,3 +198,13 @@ DATABASES = {
 
 KAFKA_BOOTSTRAP_SERVERS_IP = os.environ.get("KAFKA_BOOTSTRAP_SERVERS")
 # SECURITY WARNING: don't run with debug turned on in production!
+APPEND_SLASH = False
+
+if 'test' in sys.argv:
+    DATABASES['default']['TEST'] = {
+        'NAME': 'test_bonito',
+        'SERIALIZE': False,
+    }
+    DATABASES['read_replica']['TEST'] = {
+        'SKIP_CREATION': True,
+    }

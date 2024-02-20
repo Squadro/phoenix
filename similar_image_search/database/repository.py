@@ -1,6 +1,7 @@
 import logging
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import transaction
 from django.http import Http404
 from pgvector.django import CosineDistance
 
@@ -73,4 +74,33 @@ class SearchRepository:
             return product_ids
         except Exception as e:  # Corrected syntax here
             logger.error(f"An error occurred in getSearchSimilarProduct: {e}")
+            raise e
+
+    def updateStatus(self, product_id_status_data, product_variant_id_status_data):
+        try:
+            with transaction.atomic():
+                for status, productVariantIds in product_variant_id_status_data.items():
+                    product_variants = ProductVariantInformation.objects.filter(
+                        product_variant_id__in=productVariantIds
+                    )
+
+                    # Update the status for each ProductVariantInformation object
+                    for variant in product_variants:
+                        variant.product_variant_status = int(status)
+                        variant.save()
+
+                # Fetch the ProductVariantInformation objects with the given product IDs
+                for status, productIds in product_id_status_data.items():
+                    product_variants = ProductVariantInformation.objects.filter(
+                        product_variant_product_id__in=productIds
+                    )
+
+                    # Update the status for each ProductVariantInformation object
+                    for variant in product_variants:
+                        variant.product_variant_status = int(status)
+                        variant.save()
+
+        except Exception as e:
+            # Handle exceptions (e.g., database errors) and raise custom exception
+            logger.error(f"Error updating product variant statuses: {e}")
             raise e
