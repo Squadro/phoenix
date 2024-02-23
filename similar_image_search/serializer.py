@@ -10,6 +10,17 @@ class SearchImagesForTextSerializer(serializers.Serializer):
     data = serializers.CharField(required=True)
 
 
+class ErpCodesSerializer(serializers.Serializer):
+    erp_codes = serializers.ListField(
+        child=serializers.CharField(), required=True, allow_empty=False
+    )
+
+    def validate_erp_codes(self, value):
+        if not value:
+            raise serializers.ValidationError("ERP codes cannot be empty.")
+        return value
+
+
 class StatusSerializer(serializers.Serializer):
     product_id_status = serializers.JSONField(required=False)
     product_variant_id_status = serializers.JSONField(required=False)

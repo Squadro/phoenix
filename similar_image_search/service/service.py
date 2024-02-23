@@ -57,3 +57,15 @@ class SearchService:
         except Exception as e:
             logger.error(f"Exception occurred {e} ")
             raise e
+
+    def discontinueStatusForErpCode(self, erp_codes):
+        logger.info(
+            f"Updating status for product_variant with ERP Code:{erp_codes}"
+        )
+        try:
+
+            self.search_repository.updateStatusForErp(erp_codes)
+
+        except Exception as e:
+            logger.error(f"Exception occurred {e} ")
+            raise e

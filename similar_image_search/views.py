@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from similar_image_search.serializer import SearchImagesSerializer, SearchImagesForTextSerializer, \
-    StatusSerializer
+    StatusSerializer, ErpCodesSerializer
 from similar_image_search.service.service import SearchService
 
 logger = logging.getLogger(__name__)
@@ -50,16 +50,34 @@ def searchImagesForText(request):
 
     try:
         product_ids = service.getSimilarImageSearchForTextProductId(text)
+        response_data = {"product_ids": product_ids}
+        return JsonResponse(response_data, status=status.HTTP_200_OK, safe=False)
 
     except Exception as e:
         logger.error(f"Internal Server Error: {e}")
         return JsonResponse({"error": "Internal Server Error"}, status=500)
 
-    response_data = {"product_ids": product_ids}
-    return JsonResponse(response_data, status=status.HTTP_200_OK, safe=False)
+
+@api_view(['PUT'])
+def discontinueStatusForERPCode(request):
+    serializer = ErpCodesSerializer(data=request.data)
+    if not serializer.is_valid():
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    validated_data = serializer.validated_data
+    erpCodes = validated_data['erp_codes']
+
+    try:
+        service.discontinueStatusForErpCode(erpCodes)
+        return Response({"message": "Status updated successfully"}, status=status.HTTP_202_ACCEPTED)
+    except serializers.ValidationError as e:
+        return Response({"errors": e.detail}, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        logger.error(f"Internal Server Error: {e}")
+        return JsonResponse({"error": "Internal Server Error"}, status=500)
 
 
-@api_view(['POST'])
+@api_view(['PUT'])
 def handle_payload(request):
     try:
         payload = request.data.get("payload", {})
@@ -72,7 +90,7 @@ def handle_payload(request):
 
         service.updateStatus(product_id_status_data, product_variant_id_status_data)
 
-        return Response({"message": "Status updated successfully"}, status=status.HTTP_200_OK)
+        return Response({"message": "Status updated successfully"}, status=status.HTTP_202_ACCEPTED)
 
     except serializers.ValidationError as e:
         return Response({"errors": e.detail}, status=status.HTTP_400_BAD_REQUEST)

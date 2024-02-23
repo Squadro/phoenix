@@ -17,12 +17,13 @@ Including another URLconf
 
 from django.urls import path
 
-from similar_image_search.views import searchImages, searchImagesForText, handle_payload
+from similar_image_search.views import searchImages, searchImagesForText, handle_payload, discontinueStatusForERPCode
 
 urlpatterns = [
     path("images", searchImages, name="searchImages"),
     path("text", searchImagesForText, name="searchImagesForText"),
     path("updateStatus", handle_payload, name="updateStatus"),
+    path("discontinue", discontinueStatusForERPCode, name="discontinueStatusForErpCode"),
     # Have to Remove this URL
     # path('check/', check, name='check'),
 ]
