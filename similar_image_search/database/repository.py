@@ -60,13 +60,13 @@ class SearchRepository:
     def getSearchSimilarProductByText(self, embedding):
         try:
             # Get the related ProductVariantInformation instances for each similar image
-            querySet = ProductVariantInformation.objects.annotate(
+            product_ids = list(ProductVariantInformation.objects.annotate(
                 similarity=CosineDistance(
                     "product_variant_images__image_embedding", embedding
                 )
-            ).exclude(product_variant_status__in=[1, 2]).order_by("similarity").distinct()
+            ).exclude(product_variant_status__in=[1, 2]).order_by("similarity").values_list(
+                "product_variant_product_id", flat=True).distinct()[:5])
 
-            product_ids = list(querySet.values_list("product_variant_product_id")[:5])
             return product_ids
         except Exception as e:  # Corrected syntax here
             print(e)
