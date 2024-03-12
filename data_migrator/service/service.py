@@ -35,11 +35,21 @@ class MigrationService:
             try:
                 formatted_data = {
                     "product_variant_id": variant_data["record_id__id"],
-                    "product_id": variant_data["record_id__product_id"],
+                    "product_variant_status": variant_data["record_id__status"],
+                    "product_variant_erp_code": variant_data["record_id__erp_code"],
+                    "product_variant_name": variant_data["record_id__name"],
+                    "product_variant_description": variant_data["record_id__description"],
+
                     "image_id": variant_data["blob_id"],
                     "s3_key": variant_data["blob__key"],
-                    "status": variant_data["record_id__status"],
-                    "product_erp_code": variant_data["record_id__erp_code"],
+
+                    "product_id": variant_data["record_id__product__id"],
+                    # "product_name": variant_data["record_id__product__name"],
+                    # "product_description": variant_data["record_id__product__description"],
+                    # "product_short_description": variant_data["record_id__product__short_description"],
+                    # "product_erp_code": variant_data["record_id__product__erp_code"],
+                    # "product_short_status": variant_data["record_id__product__status"],
+                    # "product_category_id": variant_data["record_id__product__product_category_id"]
                 }
                 # Produce variant data to the message queue
                 self.message_producer.produce_message(
@@ -76,7 +86,7 @@ class MigrationService:
             logger.info(f"Last Successful page: {last_successful_page}")
             page_number = last_successful_page + 1
 
-            while True:
+            while True and page_number < 2:
                 try:
                     success_count = 0
                     failure_count = 0

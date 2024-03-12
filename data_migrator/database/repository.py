@@ -1,8 +1,10 @@
 # repository.py - Database Layer
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import F
 
 from data_migrator.model.active_storage_attachments import ActiveStorageAttachments
+from data_migrator.model.commerce_products import CommerceProducts
 from data_migrator.model.last_successful_page import (
     LastSuccessfulPage,
 )  # Import the LastSuccessfulPage model
@@ -27,12 +29,14 @@ class VariantRepository:
         paginator = Paginator(queryset, page_size)
         try:
             variants_data = paginator.page(page_number)
+            distinct_product_ids = variants_data.object_list.values_list("record_id__product_id", flat=True).distinct()
         except PageNotAnInteger:
             # If page is not an integer, deliver first page.
             variants_data = paginator.page(1)
         except EmptyPage:
             # If page is out of range (e.g. 9999), deliver last page of results.
             variants_data = paginator.page(paginator.num_pages)
+            distinct_product_ids = variants_data.object_list.values_list("record_id__product_id", flat=True).distinct()
             if not variants_data.has_next():
                 raise EmptyPage("The last page is empty.")
 
@@ -52,7 +56,25 @@ class VariantRepository:
         LastSuccessfulPage.objects.create(page_number=page_number)
 
     @staticmethod
-    def get_variant_data_query_set():
+    def get_product_data(product_ids):
+        product_data = CommerceProducts.objects.filter(id__in=product_ids).values(
+            id=F('id'),
+            product_name=F('name'),
+            product_description=F('description'),
+            product_short_description=F('short_description'),
+            product_erp_code=F('erp_code'),
+            product_status=F('status'),
+            product_category_id=F('product_category_id'),
+            # Add other fields you need with the "product_" prefix
+        )
+
+        # Convert product_data to a dictionary for easy lookup
+        product_data_dict = {product['id']: product for product in product_data}
+
+        return product_data_dict
+
+    @staticmethod
+    def get_product_data_query_set():
         return (
             ActiveStorageAttachments.objects.select_related("blob", "record_id")
             .filter(record_type="Commerce::ProductVariant", name="images")
@@ -62,8 +84,11 @@ class VariantRepository:
                 "blob_id",
                 "blob__key",
                 "record_id__id",
+                "record_id__name",
+                "record_id__description",
                 "record_id__erp_code",
                 "record_id__status",
-                "record_id__product_id",
+                "record_id__product_id",  # Include fields from CommerceProducts
+
             )
         )
