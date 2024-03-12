@@ -31,6 +31,7 @@ load_dotenv()
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'rest_framework',
     "django.contrib.admin",
     "django.contrib.auth",
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -72,6 +74,12 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+CORS_ALLOWED_ORIGINS = [
+    # add the domains from which you want to allow cross-origin requests
+    "http://localhost:3000",  # example for a React app running on localhost
+    "https://.bonito.in",  # replace with your actual domain
 ]
 
 WSGI_APPLICATION = "phoenix.wsgi.application"
