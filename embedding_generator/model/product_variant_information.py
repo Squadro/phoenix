@@ -13,13 +13,3 @@ class ProductVariantInformation(models.Model):
     product_variant_images = models.ManyToManyField(
         ImageEmbedding, related_name="image_relation", related_query_name="images"
     )
-
-    # class Meta:
-    #     db_table = "product_variant_information"
-    #     app_label = "default"
-    #
-    # def __str__(self):
-    #     return (
-    #         f"Product Variant Information - Id=  {self.product_variant_id} ,  ERP Code = {self.product_variant_erp_code},"
-    #         f"Product Id = {self.product_variant_product_id}, Status = {self.product_variant_status} "
-    #     )
